@@ -20,7 +20,7 @@ public class jv02_24_형변환 {
        System.out.println(result);
        
      //변환불능int result = false + true;    
-       result = ((false)? 1:0) + ((true)? 0:1);
+       result = ((false)? 1:0) + ((true)? 1:0);
        System.out.println(result);
    }
     
