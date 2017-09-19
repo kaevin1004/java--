@@ -19,30 +19,22 @@ public class jv03_04_중첩ifelse
     {
         System.out.println("학점:A");
     }
-    else 
+    else if (n >=80) 
     {
-        if (n >=80) 
-        {
-            System.out.println("학점:B");
-        }
-        else 
-        {
-            if (n >=70)
-            {
-                System.out.println("학점:C");
-            }
-            else
-            {
-                if (n >=60)
-                {
-                    System.out.println("학점:D");
-                }
-                else
-                {
-                    System.out.println("F");
-                }
-            }
-        }   
-     } 
-     }
+        System.out.println("학점:B");
+    }
+    else if (n >=70)
+    {
+        System.out.println("학점:C");
+    }
+    else  if (n >=60)
+    {
+        System.out.println("학점:D");
+    }
+    else
+    {
+        System.out.println("F");
+    }
+     
+    }
 }
