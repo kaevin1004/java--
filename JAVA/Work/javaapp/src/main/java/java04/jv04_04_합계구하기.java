@@ -17,13 +17,10 @@ public class jv04_04_합계구하기 {
         j= keyboard1.nextInt();
         
         
-        if(i<4)
-            for(int i=1; i<=4; i=i+1){
-                sum = sum+i;
-                System.out.println("1부터"+i+ "까지의 합:"+sum);
+        
             }
             
         }
-    }
+    
     
 

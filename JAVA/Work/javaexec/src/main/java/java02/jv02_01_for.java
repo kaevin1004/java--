@@ -3,7 +3,7 @@ package java02;
 public class jv02_01_for {
     public static void main(String[] args) {
         
-        for(int i=1;i<=10;i++){          //항상 뒤에 "{}"을 적는다.
+        for(int i=1;i<=10;i=i+1){          //항상 뒤에 "{}"을 적는다.
             System.out.println(i);
         }
             
