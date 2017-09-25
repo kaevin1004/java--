@@ -6,9 +6,10 @@ public class jv04_ex04_01_n1부터n2합계구하기 {
     public static void main(String[] args){
         
         int n1=0;
+        
         Scanner keyboard = new Scanner(System.in);
         System.out.print("정수를 입력하시오:");//숫자 탭 숫자 입력
-        n1=keyboard.nextInt();//ni 키보드 입력 값 적기
+        n1=keyboard.nextInt();//n1 키보드 입력 값 적기
         int n2=0;
         n2=keyboard.nextInt();//n2 키보드 입력 값 적기
         

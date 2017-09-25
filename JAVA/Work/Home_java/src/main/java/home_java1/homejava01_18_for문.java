@@ -15,7 +15,7 @@ public class homejava01_18_for문 {
         b=keyboard.nextInt();
         
         if(a>b){
-            temp=b;//종료값을 temp에 넣는다
+            temp=b;//종료값을 temp에 넣는다.
             b=a;//시작값을 종료값에 넣는다
             a=temp;//temp를 시작값에 넣는다.
         }//a가b보다 크면 a와 b의 값이 서로 변경됨.

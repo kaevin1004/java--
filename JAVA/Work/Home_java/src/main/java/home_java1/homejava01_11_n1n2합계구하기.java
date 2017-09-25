@@ -15,6 +15,7 @@ public class homejava01_11_n1n2합계구하기 {
         n2=keyboard.nextInt();
         
         int sum=0;
+        
         for(int i=n1; i<=n2; i=i+1){
             sum=sum+i;
             System.out.print(i);
