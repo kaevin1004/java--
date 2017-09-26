@@ -16,6 +16,6 @@ public class jv06_11_서로변경 {
         b=a;
         a=temp;
         System.out.println("swap 안:a="+a+",b="+b);
-    }//스왑 안에서는 값이 변경됨
+    }//스왑 메서드 안에서는 값이 변경됨
     
 }
