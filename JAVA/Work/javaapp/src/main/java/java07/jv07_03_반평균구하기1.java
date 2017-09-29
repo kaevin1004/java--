@@ -11,7 +11,7 @@ public class jv07_03_반평균구하기1 {
         
         Scanner keyboard = new Scanner(System.in);
         
-        for(int i=0; i<a.length; i=i+1){
+        for(int i=0; i<=a.length-1; i=i+1){
             System.out.print("숫자를 입력하시오:");
             size=keyboard.nextInt();
             //for문을 이용하여 3개의 배열을 순차적으로 적는다.

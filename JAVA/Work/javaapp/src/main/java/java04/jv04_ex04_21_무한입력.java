@@ -22,6 +22,7 @@ public class jv04_ex04_21_무한입력 {
             }
         }
         System.out.println();//줄바꿈으로 다시 for문으로 돌아가 계속 반복문이 된다.
+        
     }   
     
 }

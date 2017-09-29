@@ -9,9 +9,9 @@ public class homejava01_18_for문 {
         int b=0;
         int temp;
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("시작 값:");
+        System.out.print("시작 값:");
         a=keyboard.nextInt();
-        System.out.println("종료 값:");
+        System.out.print("종료 값:");
         b=keyboard.nextInt();
         
         if(a>b){
@@ -26,7 +26,7 @@ public class homejava01_18_for문 {
         for(int i=a; i<=b; i=i+1){
             sum=sum+i;
         }
-        System.out.println(sum);//결국 같은 값이 출력됨.
+        System.out.print(sum);//결국 같은 값이 출력됨.
     }
         
 }
