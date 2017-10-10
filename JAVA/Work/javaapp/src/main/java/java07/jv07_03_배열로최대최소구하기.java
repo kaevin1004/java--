@@ -1,5 +1,6 @@
 package java07;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class jv07_03_배열로최대최소구하기 {
@@ -30,6 +31,7 @@ public class jv07_03_배열로최대최소구하기 {
         }
         //배열 정렬 값을 넣어 배열을 정렬해준다.
         java.util.Arrays.sort(array);
+        
         
         //배열 정렬 후 값 출력
         System.out.print("배열정렬 후:");
