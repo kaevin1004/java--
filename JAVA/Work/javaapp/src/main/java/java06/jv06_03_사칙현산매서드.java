@@ -5,15 +5,12 @@ public class jv06_03_사칙현산매서드 {
     public static void main(String[] args){
         
         int x=2, y=4;
-        int add=Add(x,y);
-        int minus=minus(x,y);
-        int mul=mul(x,y);
-        double div=div(x,y);//int div(소수점으로 하려면 더블로 변경)
+        //int div(소수점으로 하려면 더블로 변경)
         
-        System.out.println(add);
-        System.out.println(minus);
-        System.out.println(mul);
-        System.out.println(div);
+        System.out.println(Add(x, y));
+        System.out.println(minus(x, y));
+        System.out.println(mul(x, y));
+        System.out.println(div(x, y));
     }
     
     private static int Add(int x, int y){

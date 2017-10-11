@@ -60,7 +60,6 @@ public class ex08_01_String메서드예제 {
             //배열 정렬 값 출력
 		}
 		
-		
 		System.out.println( q[q.length-1]);
 		//최대값을 출력
     }
