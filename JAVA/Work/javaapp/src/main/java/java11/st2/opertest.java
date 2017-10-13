@@ -17,10 +17,10 @@ public class opertest {
         y.setX(a);
         y.setY(b);
         
-        System.out.println(y.Add());
-        System.out.println(y.Minus());
-        System.out.println(y.Mul());
-        System.out.println(y.Div());
+        System.out.println("ADD:"+y.Add());
+        System.out.println("Minus:"+y.Minus());
+        System.out.println("Mul:"+y.Mul());
+        System.out.println("Div:"+y.Div());
     }
     
 }
