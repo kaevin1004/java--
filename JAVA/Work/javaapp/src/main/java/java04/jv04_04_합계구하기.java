@@ -11,10 +11,8 @@ public class jv04_04_합계구하기 {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("시작 값을 입력하시오");
         i= keyboard.nextInt();
-        
-        Scanner keyboard1 = new Scanner(System.in);
         System.out.println("종료 값을 입력하시오");
-        j= keyboard1.nextInt();
+        j= keyboard.nextInt();
         
         
         
