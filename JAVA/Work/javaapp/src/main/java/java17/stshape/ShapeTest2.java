@@ -18,6 +18,13 @@ public class ShapeTest2 {
         
         System.out.println("s"+ s.toString());
         
+        s.x=10;
+        s.y=10;
+        s.width = 100;
+        s.height=100;
+        System.out.println("s"+s.toString());
+        System.out.println("r"+r.toString());
+        
     }
     
 }

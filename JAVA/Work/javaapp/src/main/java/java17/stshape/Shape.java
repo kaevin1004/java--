@@ -5,6 +5,8 @@ public class Shape {
     protected String color="";
     protected int x=0;
     protected int y=0;
+    public int width;
+    public int height;
     
     
     public String getColor() {
