@@ -59,8 +59,7 @@ public class jv18_05_Date {
         b.setDate(b.getDate()+2);
         
         SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
-        String z = s.format(b);
-        System.out.println(z);
+        System.out.println(s.format(b));
         
         
         
@@ -70,8 +69,7 @@ public class jv18_05_Date {
         b.setSeconds(b.getSeconds()+10);
         
         SimpleDateFormat x = new SimpleDateFormat("HH:mm:ss a");
-        String n = x.format(b);
-        System.out.println(n);
+        System.out.println(x.format(b));
         
         
         
