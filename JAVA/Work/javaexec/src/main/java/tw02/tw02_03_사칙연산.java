@@ -15,6 +15,7 @@ public class tw02_03_사칙연산 {
         
         return x+y;
     }
+    
     public static int Minus(int x, int y){
         
         return x-y;
@@ -28,5 +29,6 @@ public class tw02_03_사칙연산 {
         
         return (double)x / (double)y ;
     }
+    
     
 }
