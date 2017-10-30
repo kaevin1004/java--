@@ -6,10 +6,10 @@ public class tw02_10_유효점수구하기 {
     
     public static void main(String[] args){
         
-        int a=4;
+        int a=5;
         
         int[] b={7,9,4,8,5};
-        
+        System.out.println(b.length);
         System.out.println("심사위원 수:"+" "+b.length);
         
         System.out.print("5명 심사위원 점수:"+" ");
