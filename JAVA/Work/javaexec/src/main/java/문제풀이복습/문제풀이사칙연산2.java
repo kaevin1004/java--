@@ -2,7 +2,7 @@ package 문제풀이복습;
 
 public class 문제풀이사칙연산2 {
     
-public static int add(int x, int y){
+    public static int add(int x, int y){
         
         return x+y;
     }
