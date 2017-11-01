@@ -19,22 +19,17 @@ public class EmployeeTestArray {
             a[i] = new Employee();
             
             System.out.print("이름 : ");
-            String b = key.next();
+            a[i].setName(key.next());
             
             System.out.print("주소 : ");
-            String c = key.next();
+            a[i].setAddress(key.next());
             
             System.out.print("급여 : ");
-            int d = key.nextInt();
+            a[i].setSalary(key.nextInt());
             
             System.out.print("주민번호 : ");
-            String e = key.next();
+            a[i].setRrn(key.next());
             
-            
-            a[i].setName(b);
-            a[i].setAddress(c);
-            a[i].setSalary(d);
-            a[i].setRrn(e);
             
         }
         

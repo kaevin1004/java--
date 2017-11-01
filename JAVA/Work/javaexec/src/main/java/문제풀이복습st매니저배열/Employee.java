@@ -34,13 +34,12 @@ public class Employee {
     }
     
     
-    
     @Override
     public String toString() {
         return "Employee [name=" + name + ", address=" + address + ", salary="
-                + salary + ", rrn=" + rrn + ", toString()=" + super.toString()
-                + "]";
+                + salary + ", rrn=" + rrn + "]";
     }
+    
     public Employee() {
         super();
     }
@@ -52,7 +51,5 @@ public class Employee {
         this.salary = salary;
         this.rrn = rrn;
     }
-    
-    
-    
+     
 }

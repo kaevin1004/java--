@@ -90,7 +90,7 @@ public class ProductTest {
             a[roomid] = cd;
             roomid = roomid + 1;
             
-            key.next();
+          
         }
         else if(menu==3){
             
@@ -121,13 +121,7 @@ public class ProductTest {
             a[roomid] = new CoversationBook();
             roomid = roomid + 1;
         }
-        else{
-            
-        }
-        
-        
-        
-        
+         
         
     }
     

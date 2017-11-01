@@ -15,12 +15,11 @@ public class Manager extends Employee{
         this.bouns = bouns;
     }
 
-    
 
     @Override
     public String toString() {
-        return "Manager [bouns=" + bouns + ", salary=" + salary
-                + ", toString()=" + super.toString() + "]";
+        return "Manager [bouns=" + bouns + ", toString()=" + super.toString()
+                + "]";
     }
 
     public Manager() {
@@ -31,6 +30,5 @@ public class Manager extends Employee{
         super();
         this.bouns = bouns;
     }
- 
-    
+   
 }
