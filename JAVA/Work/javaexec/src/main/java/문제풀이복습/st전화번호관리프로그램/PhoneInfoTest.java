@@ -112,22 +112,31 @@ public class PhoneInfoTest {
             }
             else if(a == 3){
                 System.out.println("삭제할 데이터를 입력하세요.");
+                System.out.print("테이터 : ");
                 String h = key.next();
                 
                 for(int i=0; i<=roomnumber-1; i= i+1){
                     
                     if(h.equals(x[i].getName())){
                         
-                        x[i] = x[i+1];
+                        if(i+1 < x.length){
+                            
+                            x[i] = x[i+1];
+                            
+                            
+                            
+                            System.out.println("삭제가 완료되었습니다.");
+                            System.out.println("\n");
+                            
+                        }
                         
-                        System.out.println("삭제가 완료되었습니다.");
-                        System.out.println("\n");
                         
                     }
                     else{
                         System.out.println("잘못 입력하셨습니다.");
                         System.out.println("\n");
                     }
+                    System.out.println();
                     
                 }
                  
