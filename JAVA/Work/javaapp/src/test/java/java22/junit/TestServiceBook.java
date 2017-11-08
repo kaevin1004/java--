@@ -2,7 +2,6 @@ package java22.junit;
 
 import static org.junit.Assert.*;
 
-import java.awt.print.Book;
 import java.sql.SQLException;
 
 import org.junit.BeforeClass;
@@ -10,36 +9,36 @@ import org.junit.Test;
 
 import java23.jdbc.DaoBook;
 import java23.jdbc.ModelBook;
-import java23.jdbc.dbconnect;
+import java23.jdbc.ServiceBook;
 
-public class TestDaoBook {
+public class TestServiceBook {
     
-    static java.sql.Connection conn = null;
+    private static ServiceBook svr = null;
     
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         
-        conn = dbconnect.makeConnection();
+      svr =  new ServiceBook();
         
     }
     
+        
     @Test
     public void testGetCount() throws SQLException {
         
-        DaoBook book = new DaoBook(conn);
         ModelBook model = new ModelBook();
-        int result = book.getCount(model);
+        
+        int result = svr.getCount(model);
         
         assertEquals(4, result);
-        
         
     }
     
     @Test
     public void testGetMaxBookid() throws SQLException {
         
-        DaoBook a = new DaoBook(conn);
-        int x = a.getMaxBookid();
+        
+        int x = svr.getMaxBookid();
         
         assertEquals(4, x);
         
@@ -48,9 +47,7 @@ public class TestDaoBook {
     @Test
     public void testSelectAll() throws SQLException {
         
-        DaoBook a = new DaoBook(conn);
-        
-        java.sql.ResultSet x = a.selectAll();
+        java.sql.ResultSet x = svr.selectAll();
         x.next();
         int bookid = x.getInt("bookid");
         
@@ -65,12 +62,12 @@ public class TestDaoBook {
     @Test
     public void testSelectLike() throws SQLException {
         
-        DaoBook dao = new DaoBook(conn);
+        
         ModelBook book = new ModelBook();
         
         book.setBookname("ja");
         
-        java.sql.ResultSet a = dao.selectLike(book);
+        java.sql.ResultSet a = svr.selectLike(book);
         
         // a.getRow(); //resultset 의 커서가 가르키는 위치.
         
@@ -89,12 +86,11 @@ public class TestDaoBook {
     @Test
     public void testSelectEqual() throws SQLException {
         
-        DaoBook dao = new DaoBook(conn);
         ModelBook book = new ModelBook();
         
         book.setBookname("mysql");
         
-        java.sql.ResultSet a = dao.selectEqual(book);
+        java.sql.ResultSet a = svr.selectEqual(book);
         
         //인스턴스 검증
         assertNotNull(a);
@@ -112,38 +108,29 @@ public class TestDaoBook {
     public void testSelectDynamic() throws SQLException {
         
         ModelBook book = new ModelBook();
-        DaoBook dao = new DaoBook(conn);
-        //첫번째 검증. select * from book where 1 = 1
+        //첫전째 검증. select * from book where 1 = 1
         //             select count(*) from book where 1 = 1
         
         book.setBookid(null);
         book.setBookname("");
-        java.sql.ResultSet a = dao.selectDynamic(book);
+        java.sql.ResultSet a = svr.selectDynamic(book);
         
         assertNotNull(a);//인스턴스 검증
         a.last();
         int rows = a.getRow();
-        assertEquals(dao.getCount(book), rows);
+        assertEquals(svr.getCount(book), rows);
         
-        // resultset 사용법
-        //a.next(); 커서를 다음 row로 이동.
-        //a.last(); 마지막 row로 이동.
-        //a.first(); 첫번째 row로 이동.
-        //a.getRow(); 현재 커서의 index 번호를 가져온다.
-        //a.getInt("컬럼명");
-        //a.getString("컬럼명");
-        //a.getBoolean("컬럼명");
-        //a.getDate("컬럼명");
+        //두번째 검증 select * from book where 1 = 1 and bookid =1;
         
-        // 두번째 검증. select * from book where 1 = 1 and bookid =1;
         book.setBookid(1);
         book.setBookname("");
         
-        a = dao.selectDynamic(book);
+        a = svr.selectDynamic(book);
         
         //인스턴스 검증
         assertNotNull(a);
         //값으로 검증
+        
         a.next();//커서의 위치를 다음 row로 이동.
         int bookid = a.getInt("bookid");
         String bookname = a.getString("bookname");
@@ -153,17 +140,17 @@ public class TestDaoBook {
         
         assertEquals("operating system", bookname);
         
-        //세번째 검증 select * from book where 1 = 1 and bookname = 'java';
+        
+        //세번째 검증 select * from book where 1 = 1and bookname = 'java';
+        
         book.setBookid(null);
         book.setBookname("java");
-        a = dao.selectDynamic(book);
+        a = svr.selectDynamic(book);
         
         //인스턴스 검증
         assertNotNull(a);
         
-        //값으로 검증
-        a.next(); //커서의 위치를 다음 row로 이동.
-        a.first();//커서의 위치를 첫번째 row로 이동
+        a.next();
         
         bookid = a.getInt("bookid");
         bookname = a.getString("bookname");
@@ -171,12 +158,12 @@ public class TestDaoBook {
         assertEquals(3, bookid);
         assertEquals("java", bookname);
         
-        //네번째 검증 select * from book where 1 = 1 and bookid=2 and bookname ='mysql';
+        //네번째 검증 select * from book where 1 = 1 and bookid = 2 and bookname = 'mysql';
         
         book.setBookid(2);
         book.setBookname("mysql");
         
-        a = dao.selectDynamic(book);
+        a = svr.selectDynamic(book);
         
         a.last();
         
@@ -187,13 +174,12 @@ public class TestDaoBook {
         assertEquals("mysql", bookname);
         
         
-        
     }
     
     @Test
     public void testInsertBook() throws SQLException {
         
-        java.util.Date date1 = new java.util.Date();
+java.util.Date date1 = new java.util.Date();
         
         java.sql.Date date2 = java.sql.Date.valueOf("2017-11-08");
         // new java.util.Date(117,10, 8);
@@ -207,8 +193,8 @@ public class TestDaoBook {
         book.setUse_yn(true);
         book.setAuthid(3);
         
-        DaoBook dao = new DaoBook(conn);
-        int a = dao.insertBook(book);
+       
+        int a = svr.insertBook(book);
         
         //insert 검증 : 
         //1이 리턴되는 경우 : insert 성공
@@ -218,11 +204,10 @@ public class TestDaoBook {
         
         assertEquals(1, a);
         
-        
     }
     
     @Test
-    public void testUdateBook() throws SQLException {
+    public void testUpdateBook() throws SQLException {
         
         ModelBook wherebook = new ModelBook();
         wherebook.setBookname("test");
@@ -232,8 +217,8 @@ public class TestDaoBook {
         setbook.setPrice(12000);
         setbook.setYear("2016");
         
-        DaoBook dao = new DaoBook(conn);
-        int a = dao.updateBook(wherebook,setbook);
+        
+        int a = svr.updateBook(wherebook,setbook);
         
         //검증코드
         //1이상의 숫자가 리턴되는 경우 : 성공
@@ -243,13 +228,13 @@ public class TestDaoBook {
     }
     
     @Test
-    public void testDelete() throws SQLException {
+    public void testDeletebook() throws SQLException {
         
         ModelBook book = new ModelBook();
         book.setBookname("test");
         
-        DaoBook dao = new DaoBook(conn);
-        int a = dao.deletebook(book);
+        
+        int a = svr.deletebook(book);
         
         //검증코드
         //1 이상의 값이 리턴되는 경우 : 성공
@@ -258,12 +243,26 @@ public class TestDaoBook {
         assertTrue(a >=0);
         
         book.setBookname("test2");
-        a = dao.deletebook(book);
+        a = svr.deletebook(book);
         //검증코드
         //1 이상의 값이 리턴되는 경우 : 성공
         //0 값이 리턴되는 경우 : 성공
         
         assertTrue(a >=0);
+        
+    }
+    
+    @Test
+    public void testTransCommit() {
+        
+        
+        
+    }
+    
+    @Test
+    public void testTransRollback() {
+        
+        
         
     }
     
