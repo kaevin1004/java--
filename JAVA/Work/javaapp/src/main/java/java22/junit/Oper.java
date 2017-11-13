@@ -37,20 +37,19 @@ public class Oper {
         return this.a + this.b;
     }
     
-public int minus(){
+    public int minus() {
         
         return this.a - this.b;
     }
-
-public int mul(){
     
-    return this.a * this.b;
-}
-
-public double div(){
+    public int mul() {
+        
+        return this.a * this.b;
+    }
     
-    return (double)this.a / (double)this.b;
-}
-
+    public double div() {
+        
+        return (double) this.a / (double) this.b;
+    }
     
 }
