@@ -109,7 +109,7 @@ public class DaoAuth implements IAuth {
         try {
             //문장 객체 생성
             PreparedStatement stmt = this.conn.prepareStatement(query);
-            stmt.setString(1, " %" + auth.getName()+"% ");
+            stmt.setString(1, "%" + auth.getName()+"%");
             
             //문장 객체 실행
             rs = stmt.executeQuery();
@@ -150,9 +150,42 @@ public class DaoAuth implements IAuth {
     @Override
     public ResultSet selectDynamic(ModelAuth auth) throws SQLException {
         
+        ResultSet rs = null;
+        try{
+            String query = "select * from auth \n";
+            
+            query += "where 1 = 1\n";
+                    if(auth.getAuthid() !=null){
+                        query += "and authid = ? \n";
+                        
+                    }
+                    if(!auth.getName().isEmpty()){
+                        query += "and name = ? \n";
+                    }
+                    if(!auth.getBirth().isEmpty()){
+                        query += "and brith = ? \n";
+                    }
+                    PreparedStatement stmt = conn.prepareStatement(query);
+                    
+                    int c = 1;
+                    
+                    if(auth.getAuthid() != null){
+                        stmt.setInt(c++, auth.getAuthid());
+                    }
+                    if(!auth.getName().isEmpty()){
+                        stmt.setString(c++, auth.getName());
+                    }
+                    if(!auth.getBirth().isEmpty()){
+                        stmt.setString(c++, auth.getBirth());
+                    }
+                    
+                    rs = stmt.executeQuery();
+                    
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         
-        
-        return null;
+        return rs;
     }
     
     @Override
@@ -218,8 +251,8 @@ public class DaoAuth implements IAuth {
         
         String query  = " delete from auth \n";
                query += " where 1 = 1 \n";
-               query += " name = ? \n";
-               query += " birth = ? \n";
+               query += " and name = ? \n";
+               query += " and birth = ? \n";
         
         try {
             PreparedStatement stmt = conn.prepareStatement(query);

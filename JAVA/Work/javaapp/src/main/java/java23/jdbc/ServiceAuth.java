@@ -155,11 +155,21 @@ public class ServiceAuth implements IAuth {
     public ResultSet selectDynamic(ModelAuth auth) throws SQLException {
 
         //트랜젝션 시작
+        ResultSet rs = null;
+        try{
+            conn.setAutoCommit(false);
+            DaoAuth dao = new DaoAuth(conn);
+            rs = dao.selectDynamic(auth);
+            conn.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            conn.rollback();
+        }
         
         //트랜젝션 커밋
         
         //트랜젝션 종료
-        return null;
+        return rs;
     }
     
     @Override

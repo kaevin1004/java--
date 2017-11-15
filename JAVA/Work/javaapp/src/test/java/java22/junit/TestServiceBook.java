@@ -108,7 +108,7 @@ public class TestServiceBook {
     public void testSelectDynamic() throws SQLException {
         
         ModelBook book = new ModelBook();
-        //첫전째 검증. select * from book where 1 = 1
+        //첫번째 검증. select * from book where 1 = 1
         //             select count(*) from book where 1 = 1
         
         book.setBookid(null);
@@ -179,7 +179,7 @@ public class TestServiceBook {
     @Test
     public void testInsertBook() throws SQLException {
         
-java.util.Date date1 = new java.util.Date();
+        java.util.Date date1 = new java.util.Date();
         
         java.sql.Date date2 = java.sql.Date.valueOf("2017-11-08");
         // new java.util.Date(117,10, 8);
