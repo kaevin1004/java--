@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, th, td {
+            border:1px solid gray;  /* 표의 테두리 - 1px 회색 실선 */
+            border-collapse:collapse;  /* 표 테두리와 셀 테두리 합치기 */
+        }
+    </style>
+</head>
+<body>
+    <table align="center">
+        <thead align="center">
+            <tr>
+                <th colspan="2"> <strong>지역별 홍차</strong></th><!--두개의 셀을 하나로 합치기 colspan-->
+            </tr>
+        </thead>
+
+        <tbody align="center">
+            <tr>
+                <td rowspan="3"><strong>중국</strong></td>
+                <td>정산소총</td>
+            </tr>
+            <tr>
+                <td>기분</td>
+            </tr>
+            <tr>
+                <td>운남</td>
+            </tr>
+
+
+
+            <tr>
+                <td rowspan="4"><strong>인도 및 스리랑카</strong></td>
+                <td>아삼</td>
+            </tr>
+            <tr>
+                <td>실론</td>
+            </tr>
+            <tr>
+                <td>다질링</td>
+            </tr>
+            <tr>
+                <td>닐기리</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

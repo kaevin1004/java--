@@ -1,4 +1,4 @@
-package java23.mybatis;
+package java24.mybatis;
 
 public class adafsdf {
     
