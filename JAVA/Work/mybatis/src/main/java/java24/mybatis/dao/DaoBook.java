@@ -1,4 +1,4 @@
-package java24.mybais.dao;
+package java24.mybatis.dao;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java24.mybais.inf.IBook;
+import java24.mybatis.inf.IBook;
 import java24.mybatis.model.ModelBook;
 
 @Repository("daobook")
@@ -76,27 +76,26 @@ public class DaoBook implements IBook {
     @Override
     public int insert(ModelBook book) throws Exception {
         
-        int result = -1;
-        
-        result = session.insert("mapper.mapperBook.insertBook", book);
+        session.insert("mapper.mapperBook.insertBook", book);
        
-        return result;
+        return book.getBookid();
     }
 
     @Override
     public int insertMap(String bookname, Date dtm, int authid)
             throws Exception {
         
-        int result = -1;
-        Map<String, Object> map = new HashMap<>();
         
-        map.put("b1", bookname);
-        map.put("d1", dtm);
-        map.put("c1", authid);
+        Map<String, Object> Map = new HashMap<>();
         
-        result = session.insert("mapper.mapperBook.insertMap", map);
+        Map.put("b1", bookname);
+        Map.put("d1", dtm);
+        Map.put("c1", authid);
+        Map.put("bookid", -1);
         
-        return result;
+        session.insert("mapper.mapperBook.insertMap", Map);
+        
+        return (int) Map.get("bookid");
     }
 
     @Override

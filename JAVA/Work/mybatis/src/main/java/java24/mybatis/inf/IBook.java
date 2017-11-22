@@ -1,4 +1,4 @@
-package java24.mybais.inf;
+package java24.mybatis.inf;
 
 import java.util.Date;
 import java.util.List;

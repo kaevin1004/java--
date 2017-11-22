@@ -1,7 +1,7 @@
-package java24.mybais.inf;
+package java24.mybatis.inf;
 
 public interface IServiceBook extends IBook {
     
-
+    
     
 }

@@ -2,17 +2,23 @@ package java24.mybatis;
 
 import static org.junit.Assert.*;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java24.mybais.svr.ServiceBook;
+import java24.mybatis.inf.IServiceBook;
+import java24.mybatis.model.ModelBook;
+import java24.mybatis.svr.ServiceBook;
 import net.sf.log4jdbc.CallableStatementSpy;
 
 public class TestServiceBook {
     
-    private static ServiceBook service = null;
+    private static IServiceBook service = null;
     
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -30,51 +36,123 @@ public class TestServiceBook {
     }
     
     @Test
-    public void testGetCount() {
+    public void testGetCount() throws Exception {
         
+        ModelBook book = new ModelBook();
+        int rs = service.getCount(book);
+        
+        assertEquals(4, rs);
+        
+    }
+    
+    @Test
+    public void testGetMaxBookid() throws Exception {
+        
+        ModelBook book = new ModelBook();
+        int rs = service.getMaxBookid();
+        
+        assertEquals(4, rs);
+        
+    }
+    
+    @Test
+    public void testSelectAll() throws Exception {
+        
+        ModelBook book = new ModelBook();
+        
+        List<ModelBook>rs = service.selectAll(book);
+        
+        //인스턴스 검증
+        assertNotNull(rs);
+        
+        //값으로 검증
+        ModelBook m = rs.get(0);
+        
+        assertSame(1, m.getBookid());
+        assertEquals("operating system", m.getBookname());
+        
+        //갯수로 검증
+        int count = service.getCount(null);
+        assertEquals(count, rs.size());
         
         
     }
     
     @Test
-    public void testGetMaxBookid() {
+    public void testSelectLike() throws Exception {
         
+        ModelBook book = new ModelBook();
         
+        book.setBookname("%ja%");
+        book.setPublisher("hall");
+        List<ModelBook> rs = service.selectLike(book);
         
-    }
-    
-    @Test
-    public void testSelectAll() {
+        //인스턴스 검증
+        assertNotNull(rs);
         
+        //값으로 검증
+        ModelBook m = rs.get(0);
         
-        
-    }
-    
-    @Test
-    public void testSelectLike() {
-        
-        
-        
-    }
-    
-    @Test
-    public void testSelectEqual() {
-        
+        assertSame(3, m.getBookid());
+        assertEquals("java", m.getBookname());
+        //갯수로 검증
         
         
     }
     
     @Test
-    public void testInsert() {
+    public void testSelectEqual() throws Exception {
         
+        ModelBook book = new ModelBook();
         
+        book.setBookname("java");
+        
+        List<ModelBook> rs = service.selectEqual(book);
+        
+        assertNotNull(rs);
+        
+        ModelBook m = rs.get(0);
+        
+        assertSame(3, m.getBookid());
+        assertEquals("java", m.getBookname());
         
     }
     
     @Test
-    public void testInsertMap() {
+    public void testInsert() throws Exception {
         
+                
+        Date date2 = Date.valueOf("2017-11-22");
         
+        ModelBook book = new ModelBook();
+        
+        book.setBookname("test");
+        book.setPublisher("내가");
+        book.setYear("2017");
+        book.setPrice(10000);
+        book.setDtm(date2);
+        book.setUse_yn(true);
+        book.setAuthid(3);
+        
+        int a  = service.insert(book);
+        
+        assertEquals(9, a);
+        
+    }
+    
+    @Test
+    public void testInsertMap() throws Exception {
+        
+        ModelBook wherebook = new ModelBook();
+        
+        wherebook.setBookname("test");
+        
+        ModelBook setbook = new ModelBook();
+        
+        setbook.setPrice(12000);
+        setbook.setYear("2016");
+        
+        int a = service.update(wherebook, setbook);
         
     }
     

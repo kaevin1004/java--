@@ -9,27 +9,28 @@
         select count(*) from book
         where 1 = 1
         <if test="bookname != null and bookname != '' ">and bookname = #{bookname}</if>
-        <if test="publisher != null and publisher != '' ">and publisher = #{publisher}</if>        
+        <if test="publisher != null and publisher != '' ">and publisher = #{publisher}</if>
     </select>
-    
+
     <select id="getMaxBookid" resultType="int">
-    select max(bookid) bookid from book
+        select max(bookid) bookid from book
     </select>
 
     <select id="selectAll" parameterType="ModelBook" resultType="ModelBook">
-    select * from book
+        select * from book
     </select>
 
     <select id="selectLike" parameterType="ModelBook" resultType="ModelBook">
-        select * from book 
+        select * from book
         where 1 = 1
         <if test="bookname != null and bookname != '' ">and bookname like #{bookname}</if>
         <if test="publisher != null and publisher != '' ">and publisher like #{publisher}</if>
-    
+
     </select>
 
-    <select id="selectEqual" parameterType="ModelBook" resultType="ModelBook">
-        
+    <select id="selectEqual" parameterType="ModelBook"
+        resultType="ModelBook">
+
         select * from book
         where 1 = 1
         <if test="bookname != null and bookname != '' ">and bookname = #{bookname}</if>
@@ -37,43 +38,47 @@
         <if test="publisher != null and publisher != '' ">and publisher = #{publisher}</if>
         <if test="price != null">and price = #{price}</if>
     </select>
-    
-    <insert id="inserBook" parameterType="ModelBook">
-    
-    insert into book(bookname, publisher, year, price, dtm, use_yn, authid)
-    values(#{bookname}, #{publisher}, #{year}, #{price}, #{dtm}, #{use_yn}, #{authid})
-    
+
+    <insert id="insertBook" parameterType="ModelBook" 
+           useGeneratedKeys= "true" keyProperty = "bookid">
+        insert into book(bookname, publisher, year, price, dtm, use_yn, authid)
+        values(#{bookname}, #{publisher}, #{year}, #{price}, #{dtm},
+        #{use_yn}, #{authid})
+
     </insert>
-    
-    <insert id="insertMap" parameterType="java.util.map">
-        insert into book (bookname, dtm, authid)
+
+    <insert id="insertMap" parameterType="java.util.Map"
+        useGeneratedKeys= "true" keyProperty = "bookid">
+        "true" keyProperty = "bookid"
+        insert into book (bookname, dtm,
+        authid)
         values(#{b1}, #{d1}, #{c1})
     </insert>
-    
-    <update id="updateBook" parameterType="java.util.map">
-    
-    update book
-    set bookname = #{bookname}
-    , publisher = #{publisher}
-    , year = #{year}
-    , price = #{price}
-    , dtm = #{dtm}
-    , use_yn = #{use_yn}
-    , authid = #{authid}
-    where 1 = 1
-    
-    <if test="wherebook.bookid != null">and bookid = #{wherebook.bookid}</if>
-    <if test="wherebook.bookname != null">and bookname = #{wherebook.bookname}</if>
-    
+
+    <update id="updateBook" parameterType="java.util.Map">
+
+        update book
+        set bookname = #{bookname}
+        , publisher = #{publisher}
+        , year = #{year}
+        , price = #{price}
+        , dtm = #{dtm}
+        , use_yn = #{use_yn}
+        , authid = #{authid}
+        where 1 = 1
+
+        <if test="wherebook.bookid != null">and bookid = #{wherebook.bookid}</if>
+        <if test="wherebook.bookname != null">and bookname = #{wherebook.bookname}</if>
+
     </update>
-    
+
     <delete id="deleteBook" parameterType="ModelBook">
         delete from book
         where 1 = 1
         <if test="bookid != null">and bookid = #{bookid}</if>
         <if test="bookname != null">and bookname = #{bookname}</if>
     </delete>
-    
-    
-   
+
+
+
 </mapper>

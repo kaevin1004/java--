@@ -1,4 +1,4 @@
-package java24.mybais.svr;
+package java24.mybatis.svr;
 
 import java.util.Date;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java24.mybais.inf.IBook;
-import java24.mybais.inf.IServiceBook;
+import java24.mybatis.inf.IBook;
+import java24.mybatis.inf.IServiceBook;
 import java24.mybatis.model.ModelBook;
 
 @Service("servicebook")

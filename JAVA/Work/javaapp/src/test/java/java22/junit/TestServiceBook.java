@@ -193,7 +193,7 @@ public class TestServiceBook {
         book.setUse_yn(true);
         book.setAuthid(3);
         
-       
+        
         int a = svr.insertBook(book);
         
         //insert 검증 : 
