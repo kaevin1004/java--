@@ -39,9 +39,17 @@ public class TestServiceBook {
     public void testGetCount() throws Exception {
         
         ModelBook book = new ModelBook();
-        int rs = service.getCount(book);
         
-        assertEquals(4, rs);
+        book.setBookname("java");
+        book.setPublisher(null);
+        int rs = service.getCount(book);        
+        assertEquals(1, rs);
+        
+        book.setBookname("");
+        book.setPublisher("wiley");
+        rs = service.getCount(book);        
+        assertEquals(2, rs);
+        
         
     }
     
@@ -121,7 +129,7 @@ public class TestServiceBook {
     @Test
     public void testInsert() throws Exception {
         
-                
+        
         Date date2 = Date.valueOf("2017-11-22");
         
         ModelBook book = new ModelBook();
@@ -132,16 +140,35 @@ public class TestServiceBook {
         book.setPrice(10000);
         book.setDtm(date2);
         book.setUse_yn(true);
-        book.setAuthid(3);
+        book.setAuthid(2);
         
         int a  = service.insert(book);
         
-        assertEquals(9, a);
+        assertEquals(14, a);
         
     }
     
     @Test
     public void testInsertMap() throws Exception {
+        
+        Date date1 = Date.valueOf("2017-11-23");
+        
+        
+        ModelBook book = new ModelBook();
+        
+        book.setBookname("test");
+        book.setDtm(date1);
+        book.setAuthid(6);
+        
+        int a = service.insert(book);
+        
+        assertEquals(15, a);
+                
+        
+    }
+    
+    @Test
+    public void testUpdate() throws Exception {
         
         ModelBook wherebook = new ModelBook();
         
@@ -149,24 +176,25 @@ public class TestServiceBook {
         
         ModelBook setbook = new ModelBook();
         
+        setbook.setBookname("test");
         setbook.setPrice(12000);
         setbook.setYear("2016");
         
         int a = service.update(wherebook, setbook);
-        
+        System.out.println(a);
+        assertTrue(a >= 0);
     }
     
     @Test
-    public void testUpdate() {
+    public void testDelete() throws Exception {
         
+        ModelBook book = new ModelBook();
         
+        book.setBookname("test");
         
-    }
-    
-    @Test
-    public void testDelete() {
+        int a = service.delete(book);
         
-        
+        assertTrue(a >=0);
         
     }
     

@@ -31,12 +31,12 @@
     <select id="selectEqual" parameterType="ModelBook"
         resultType="ModelBook">
 
-        select * from book
-        where 1 = 1
-        <if test="bookname != null and bookname != '' ">and bookname = #{bookname}</if>
-        <if test="bookid != null">and bookid = #{bookid}</if>
-        <if test="publisher != null and publisher != '' ">and publisher = #{publisher}</if>
-        <if test="price != null">and price = #{price}</if>
+    select * from book
+    where 1 = 1
+    <if test="bookname != null and bookname != '' ">and bookname = #{bookname}</if>
+    <if test="bookid != null">and bookid = #{bookid}</if>
+    <if test="publisher != null and publisher != '' ">and publisher = #{publisher}</if>
+    <if test="price != null">and price = #{price}</if>
     </select>
 
     <insert id="insertBook" parameterType="ModelBook" 
@@ -57,18 +57,21 @@
 
     <update id="updateBook" parameterType="java.util.Map">
 
-        update book
-        set bookname = #{bookname}
-        , publisher = #{publisher}
-        , year = #{year}
-        , price = #{price}
-        , dtm = #{dtm}
-        , use_yn = #{use_yn}
-        , authid = #{authid}
-        where 1 = 1
-
-        <if test="wherebook.bookid != null">and bookid = #{wherebook.bookid}</if>
-        <if test="wherebook.bookname != null">and bookname = #{wherebook.bookname}</if>
+update book 
+           set bookname  = #{ setbook.bookname  }
+             , publisher = #{ setbook.publisher }
+             , year      = #{ setbook.year      }
+             , price     = #{ setbook.price     }
+             , dtm       = #{ setbook.dtm       }
+             , use_yn    = #{ setbook.use_yn    }
+             , authid    = #{ setbook.authid    }
+         where 1 = 1
+         <if test="wherebook.bookid != null and wherebook.bookid > 0 ">
+           and bookid   = #{ wherebook.bookid   } 
+           </if>
+         <if test="wherebook.bookname != null and wherebook.bookname != '' ">
+           and bookname = #{ wherebook.bookname }
+           </if>
 
     </update>
 

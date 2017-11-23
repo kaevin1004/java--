@@ -145,9 +145,16 @@ public class ServiceBook implements IServiceBook {
     @Override
     public int update(ModelBook wherebook, ModelBook setbook) throws Exception {
        
+        int result = -1;
         
+        try{
+            result = dao.update(wherebook, setbook);
+        }catch (Exception e){
+            
+            e.printStackTrace();
+        }
         
-        return 0;
+        return result;
     }
 
     @Override

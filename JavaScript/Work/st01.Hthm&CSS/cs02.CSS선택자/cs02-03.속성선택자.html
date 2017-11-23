@@ -2,6 +2,21 @@
 <html>
 <head>
     <title>CSS3 Selector Basic Page</title>
+    <style type="text/css">
+        input[type="text"]{background-color: red;}
+        input[name="password"]{background-color: blue;}
+        input[value="findme"]{background-color: yellow;}
+
+        /* input 태그가 사용불가능 할 경우에
+        background-color 속성에 gray 키워드를 적용합니다.*/
+        input:disabled {background-color: gray;}
+
+        /*input 태그에 커서가 위치하는 경우에
+        background-color 속성에 orange 키워드를 적용합니다.*/
+
+        input:focus {background-color: orange;}
+
+    </style>
 </head>
 <body>
     <input type="text" />
