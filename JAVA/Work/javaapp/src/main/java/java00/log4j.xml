@@ -59,10 +59,29 @@
     <logger name="org.springframework.web">
         <level value="info" />
     </logger>
+    
+    <category name="java.sql.Connection">
+        <priority value="debug" />
+        <appender-ref ref="console" />
+    </category>
+    <category name="java.sql.Statment">
+        <priority value="debug" />
+        <appender-ref ref="console" />
+    </category>
+    <category name="java.sql.PreparedStatment">
+        <priority value="debug" />
+        <appender-ref ref="console" />
+    </category>
+    <category name="java.sql.ResultSet">
+        <priority value="debug" />
+        <appender-ref ref="console" />
+    </category>
+        
 
     <!-- Root Logger -->
     <root>
-        <level value="debug" /> <!-- priority 는 로그 레벨 설정 -->
+        <!-- log level 에는 레벨에는 error, fatal, info, warn, debug 등이 있다. -->
+        <level value="debug" /> 
         <appender-ref ref="console" />
         <appender-ref ref="rolling" />
     </root>
