@@ -3,7 +3,7 @@ package board.inf;
 import java.util.List;
 
 public interface IBoard {
-    
+    /*
     String getBoardName(string name) throws Exception;
     List<ModelBoard> getBoardOne(ModelBoard board) throws Exception;
     List<ModelBoard> getBoardList(ModelBoard board) throws Exception;
@@ -17,5 +17,6 @@ public interface IBoard {
     
     int getArticleTotalRecord(ModelBoard boardcd, ModelBoard searchWord) throws Exception;
     List<ModelArticle> getArticleList( ) throws Exception;
+    */
     
 }
