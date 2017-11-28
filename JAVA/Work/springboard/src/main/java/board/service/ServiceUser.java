@@ -88,7 +88,13 @@ public class ServiceUser implements IServiceUser {
         
         int rs = -1;
         
-        rs = dao.updatePasswd(newPasswd, currentPasswd, userid);
+        try {
+            rs = dao.updatePasswd(newPasswd, currentPasswd, userid);
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
         
         return rs;
     }
@@ -110,11 +116,17 @@ public class ServiceUser implements IServiceUser {
     }
     
     @Override
-    public List<ModelUser> selectUserOne(ModelUser user) throws Exception {
+    public ModelUser selectUserOne(ModelUser user) throws Exception {
         
-        List<ModelUser> rs = null;
+        ModelUser rs = null;
         
-        rs = dao.selectUserOne(user);
+        try {
+            rs = dao.selectUserOne(user);
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
         
         return rs;
     }

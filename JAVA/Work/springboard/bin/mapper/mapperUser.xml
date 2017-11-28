@@ -28,7 +28,7 @@
 	           ,mobile=#{updateValue.mobile} 
 	           ,retireYN=#{updateValue.retireYN}
 	           ,UpdateUID=#{updateValue.UpdateUID} 
-	           ,UpdateDT=#{updateValue.UpdateDT}  
+	           ,UpdateDT=#{updateValue.UpdateDT}
            
 	        WHERE 1 = 1
 	        <if test="searchValue.userno != null">

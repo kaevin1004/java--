@@ -53,10 +53,10 @@ public class ModelUser {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
-    public boolean isRetireYN() {
+    public Boolean isRetireYN() {
         return retireYN;
     }
-    public void setRetireYN(boolean retireYN) {
+    public void setRetireYN(Boolean retireYN) {
         this.retireYN = retireYN;
     }
     public String getInsertUID() {

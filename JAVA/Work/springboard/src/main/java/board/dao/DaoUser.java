@@ -35,7 +35,7 @@ public class DaoUser implements IUser {
         
         List<ModelUser> us = null;
         
-        us = session.selectList("mapper.mapperUser.login", user);
+        us = session.selectList("mapper.mapperUser.login",user);
         
         return us;
     }
@@ -77,6 +77,8 @@ public class DaoUser implements IUser {
             map.put("newPasswd", newPasswd);
             map.put("currentPasswd", currentPasswd);
             map.put("userid", userid);
+            
+            rs = session.update("mapper.mapperUser.updatePasswd", map);
         
         return rs;
     }
@@ -92,9 +94,9 @@ public class DaoUser implements IUser {
     }
 
     @Override
-    public List<ModelUser> selectUserOne(ModelUser user) throws Exception {
+    public ModelUser selectUserOne(ModelUser user) throws Exception {
         
-        List<ModelUser> rs = null;
+        ModelUser rs = null;
         
         rs = session.selectOne("mapper.mapperUser.selectUserOne", user);
         
