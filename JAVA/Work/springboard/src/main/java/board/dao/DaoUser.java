@@ -108,7 +108,7 @@ public class DaoUser implements IUser {
         
         List<ModelUser> rs = null;
         
-        rs = session.selectOne("mapper.mapperUser.selectUserList", user);
+        rs = session.selectList("mapper.mapperUser.selectUserList", user);
         
         return rs;
     }

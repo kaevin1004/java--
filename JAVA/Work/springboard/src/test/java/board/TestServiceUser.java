@@ -4,16 +4,25 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import javax.activation.DataSource;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import org.junit.runners.MethodSorters;
+import org.junit.FixMethodOrder;
 
 import board.inf.IServiceUser;
 import board.model.ModelUser;
 import board.service.ServiceUser;
 
 
+
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestServiceUser {
     
     private static IServiceUser service = null;
@@ -23,8 +32,23 @@ public class TestServiceUser {
         
         ApplicationContext context = new
                 ClassPathXmlApplicationContext("classpath:ApplicationContext.xml");
-       
+        
         service = context.getBean("serviceuser", ServiceUser.class);
+        
+        //DB Table 초기화 코드
+        
+        javax.sql.DataSource dataSource = (javax.sql.DataSource) context.getBean("dataSource");
+        org.apache.ibatis.jdbc.ScriptRunner runner = new org.apache.ibatis.jdbc.ScriptRunner(dataSource.getConnection());
+        runner.setAutoCommit(true);
+        runner.setStopOnError(true);
+        
+        ClassLoader cl = ClassLoader.getSystemClassLoader();
+        String sf = cl.getResource("ddl/board.ddl.mysql.sql").getFile();
+        
+        java.io.Reader br = new java.io.BufferedReader(new java.io.FileReader( sf));
+        runner.runScript(br);
+        runner.closeConnection();
+        
         
     }
     
@@ -47,8 +71,8 @@ public class TestServiceUser {
         
         ModelUser user = new ModelUser();
         
-        user.setPasswd("12345");
-        user.setUserid("99");
+        user.setPasswd("password");
+        user.setUserid("userid");
         
         List<ModelUser> rs = service.login(user);
         
@@ -57,8 +81,8 @@ public class TestServiceUser {
         
         ModelUser re = rs.get(0);
         
-        assertEquals("abcd", re.getName());
-        assertSame(6, re.getUserno());
+        assertEquals("usr", re.getName());
+        assertSame(1, re.getUserno());
         
     }
     
@@ -75,12 +99,12 @@ public class TestServiceUser {
         
         ModelUser searchValue = new ModelUser();
         
-        searchValue.setUserid("99");
+        searchValue.setUserid("userid");
         
         ModelUser updateValue = new ModelUser();
         
-        updateValue.setName("멍정이");
-        updateValue.setPasswd("4313");
+        updateValue.setName("usr");
+        updateValue.setPasswd("password");
         
         int rs = service.updateUserInfo(updateValue, searchValue);
         
@@ -92,7 +116,7 @@ public class TestServiceUser {
     @Test
     public void testUpdatePasswd() throws Exception {
         
-        int result = service.updatePasswd("4555", "2344", "99");
+        int result = service.updatePasswd("4555", "password", "userid");
         
         assertTrue(result >= 0);
         
@@ -103,7 +127,7 @@ public class TestServiceUser {
         
         ModelUser user = new ModelUser();
         
-        user.setUserid("99");
+        user.setUserid("userid");
         
         int rs = service.deleteUser(user);
         
@@ -116,7 +140,7 @@ public class TestServiceUser {
         
         ModelUser user = new ModelUser();
         
-        user.setUserno(6);
+        user.setUserno(1);
         
         ModelUser rs = service.selectUserOne(user);
         
@@ -131,11 +155,9 @@ public class TestServiceUser {
         
         ModelUser user = new ModelUser();
         
-        user.setName("멍정이");
+        user.setName("usr");
 
-        List<ModelUser> rs = null;
-        
-        rs = service.selectUserList(user);
+        List<ModelUser> rs = service.selectUserList(user);
         
         assertNotNull(rs);
         System.out.println(rs);
@@ -143,9 +165,11 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testCheckuserid() {
+    public void testCheckuserid() throws Exception {
         
+        int rs = service.checkuserid("userid");
         
+        assertEquals(1, rs);
         
     }
     
