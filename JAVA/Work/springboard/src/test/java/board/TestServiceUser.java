@@ -20,8 +20,6 @@ import board.model.ModelUser;
 import board.service.ServiceUser;
 
 
-
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestServiceUser {
     
@@ -53,7 +51,7 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testInsertUser() throws Exception {
+    public void test01InsertUser() throws Exception {
         
         ModelUser user = new ModelUser();
         
@@ -67,7 +65,7 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testLogin() throws Exception {
+    public void test02Login() throws Exception {
         
         ModelUser user = new ModelUser();
         
@@ -87,7 +85,7 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testLogout() throws Exception {
+    public void test03Logout() throws Exception {
         
         
         
@@ -95,7 +93,7 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testUpdateUserInfo() throws Exception {
+    public void test04UpdateUserInfo() throws Exception {
         
         ModelUser searchValue = new ModelUser();
         
@@ -114,7 +112,7 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testUpdatePasswd() throws Exception {
+    public void test05UpdatePasswd() throws Exception {
         
         int result = service.updatePasswd("4555", "password", "userid");
         
@@ -123,7 +121,7 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testDeleteUser() throws Exception {
+    public void test06DeleteUser() throws Exception {
         
         ModelUser user = new ModelUser();
         
@@ -136,7 +134,7 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testSelectUserOne() throws Exception {
+    public void test07SelectUserOne() throws Exception {
         
         ModelUser user = new ModelUser();
         
@@ -151,7 +149,7 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testSelectUserList() throws Exception {
+    public void test08SelectUserList() throws Exception {
         
         ModelUser user = new ModelUser();
         
@@ -165,7 +163,7 @@ public class TestServiceUser {
     }
     
     @Test
-    public void testCheckuserid() throws Exception {
+    public void test09Checkuserid() throws Exception {
         
         int rs = service.checkuserid("userid");
         
