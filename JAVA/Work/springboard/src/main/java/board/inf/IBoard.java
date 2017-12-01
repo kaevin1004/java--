@@ -17,7 +17,7 @@ public interface IBoard {
     int updateBoard(ModelBoard setValue, ModelBoard whereValue) throws Exception;
     int deleteBoard(ModelBoard board) throws Exception;
     List<ModelBoard> getBoardSearch(ModelBoard board) throws Exception;
-    int getBoardTotalRecord(String searchWord) throws Exception;
+    int getBoardTotalRecord(String boardcd, String searchWord) throws Exception;
     List<ModelBoard> getBoardPaging(String boardcd, String searchWord, int start, int end) throws Exception;
     int insertBoardList(List<ModelBoard> list) throws Exception;
     
