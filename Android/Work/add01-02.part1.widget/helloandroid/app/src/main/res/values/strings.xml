@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">helloandroid</string>
+    <string name="meassage">hello, world!!!</string>
 </resources>
