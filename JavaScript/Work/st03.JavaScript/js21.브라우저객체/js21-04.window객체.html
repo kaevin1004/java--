@@ -23,7 +23,7 @@
             // prompt 이벤트 핸들러 등록
             MYAPP.prompt = document.getElementById('prompt');
             MYAPP.prompt.onclick = function (event) {
-                var input = window.prompt('문자열을 입력해주세요.', '야마다' );
+                var input = window.prompt('문자열을 입력해주세요.', 'med' );
                 window.alert('입력값：' + input);
             };
 
@@ -33,7 +33,7 @@
                 MYAPP.subwin = window.open('http://www.naver.com', '새창열기', 'location=yes');
                 MYAPP.win_close.disabled = false;
             };
-			
+
             // win_close 이벤트 핸들러 등록
             MYAPP.win_close = document.getElementById('win_close');
             MYAPP.win_close.onclick = function (event) {

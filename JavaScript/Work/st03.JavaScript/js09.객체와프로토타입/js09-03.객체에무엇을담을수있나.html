@@ -21,12 +21,14 @@
         var fullname = stoog.getName();
         console.log( fullname );
 
+        //메서드를 제외하고 프로퍼티 출력
         for ( var name in stoog ) {
             if(typeof stoog[name] != 'function' ) {
                 console.log(name+':' + stoog[name]);
             }
         }
 
+        //배열만 출력
         for (var name in stoog) {
             if (typeof stoog[name] == 'object' && stoog[name].hasOwnProperty('length')) {
                 console.log(name + ':' + stoog[name]);

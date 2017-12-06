@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:ap34="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              ap34:layout_width="match_parent"
+              ap34:layout_height="match_parent"
+              ap34:orientation="vertical"
+    >
+    
+    <Button
+        ap34:id="@+id/button8"
+        ap34:layout_width="match_parent"
+        ap34:layout_height="wrap_content"
+        ap34:text="버튼 1"/>
+    
+    <Button
+        ap34:visibility="invisible"
+        ap34:id="@+id/button11"
+        ap34:layout_width="match_parent"
+        ap34:layout_height="wrap_content"
+        ap34:text="버튼2"/>
+    
+    <Button
+        ap34:id="@+id/button12"
+        ap34:layout_width="match_parent"
+        ap34:layout_height="wrap_content"
+        ap34:text="버튼3"/>
+    
+    <Button
+        ap34:id="@+id/button13"
+        ap34:layout_width="match_parent"
+        ap34:layout_height="wrap_content"
+        ap34:visibility="gone"
+        ap34:text="버튼4"/>
+    
+    <Button
+        ap34:id="@+id/button14"
+        ap34:layout_width="match_parent"
+        ap34:layout_height="wrap_content"
+        ap34:text="버튼5"/>
+</LinearLayout>

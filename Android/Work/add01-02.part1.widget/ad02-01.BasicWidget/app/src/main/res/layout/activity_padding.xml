@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:ap34="http://schemas.android.com/apk/res/android"
+              ap34:layout_width="match_parent"
+              ap34:layout_height="match_parent"
+              ap34:orientation="vertical"
+              ap34:padding="60dp">
+    
+    <TextView
+        ap34:id="@+id/textView2"
+        ap34:layout_width="match_parent"
+        ap34:layout_height="wrap_content"
+        ap34:text="아래에 이름을 입력:"/>
+    
+    <EditText
+        ap34:id="@+id/editText4"
+        ap34:layout_width="match_parent"
+        ap34:layout_height="wrap_content"
+        ap34:inputType="textPersonName"
+        ap34:text="여기에 채우세요"/>
+    
+    <Button
+        ap34:id="@+id/button"
+        ap34:layout_width="match_parent"
+        ap34:layout_height="wrap_content"
+        ap34:text="확인"/>
+</LinearLayout>
