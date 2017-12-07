@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style></style>
-	
+    <script type="text/javascript">
+        window.onload = function(){
+            setTimeout(function()){
+                var t = new Date().toLocaleTimeString();
+                var rs = document.getElementById("rs");
+                rs.innerHTML = t;
+            }, 1000);
+        }
+        // 버튼 이벤트 핸들러 각성 : 2개
+        var button = document.getElementsByTagName("input")
+        button[0].onclick = function(){
+            //텍스트 지우기
+            //timeout 지우기
+            var rs = document.getElementById("rs");
+            rs.innerHTML = "";
+
+            clearTimeout(timer);
+
+        };
+    </script>
+
 </head>
 
 <body>
