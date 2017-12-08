@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="첫 번째 숫자"/>
+        android:inputType="number"
+        android:text=""/>
     
     <EditText
         android:id="@+id/Edit2"
@@ -24,14 +24,15 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="두 번째 숫자"/>
+        android:inputType="number"
+        android:text=""/>
     
     <Button
         android:id="@+id/BtnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#FA4444"
         android:text="더하기"/>
     
     <Button
@@ -39,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#CF10D2"
         android:text="빼기"/>
     
     <Button
@@ -46,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#5BA917"
         android:text="곱하기"/>
     
     <Button
@@ -53,6 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#8A7E98"
         android:text="나누기"/>
     
     <Button
@@ -60,6 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#4ADDEA"
         android:text="나머지 값"/>
     
     <TextView
@@ -67,5 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textSize="30dp"
+        android:textColor="#FE23FD"
         android:text="계산 결과:"/>
 </LinearLayout>

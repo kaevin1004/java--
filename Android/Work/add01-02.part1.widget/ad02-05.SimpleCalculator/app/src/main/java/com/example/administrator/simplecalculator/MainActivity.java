@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     EditText Edit1, Edit2;
-    Button BtnAdd, BtnSub, BtnMul, BtnDiv;
+    Button BtnAdd, BtnSub, BtnMul, BtnDiv, BtnRem;
     TextView TextResult;
     int num1, num2;
     Integer Result;
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         BtnSub = (Button) findViewById(R.id.BtnSub);
         BtnMul = (Button) findViewById(R.id.BtnMul);
         BtnDiv = (Button) findViewById(R.id.BtnDiv);
+        BtnRem = (Button) findViewById(R.id.BtnRem);
         TextResult = (TextView) findViewById(R.id.TextResult);
 
         View.OnClickListener clisten = new View.OnClickListener() {
@@ -51,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.BtnDiv :
                         Result = num1/num2;
                         break;
+
+                    case R.id.BtnRem :
+                        Result = num1%num2;
+                        break;
                 }
 
                 TextResult.setText("계산결과 : "+Result);
@@ -61,5 +66,8 @@ public class MainActivity extends AppCompatActivity {
         BtnSub.setOnClickListener(clisten);
         BtnMul.setOnClickListener(clisten);
         BtnDiv.setOnClickListener(clisten);
+        BtnRem.setOnClickListener(clisten);
+
+
     }
 }
