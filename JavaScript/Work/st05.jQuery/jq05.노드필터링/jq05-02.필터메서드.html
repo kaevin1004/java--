@@ -7,48 +7,42 @@
         td { border:1px solid #AAA; width:25px; height:25px; }
         div { background : #FFF; margin:5px; width:100%; }
     </style>
-    <script src='../jquery-3.1.1.js'></script>
-    <script>
-        MYAPP = {};
+    <script src="../jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#selector').click(function(event) {
+                $('li > ul').css('backgroundColor', 'red');
+            });
 
-        // 초기화 함수
-        MYAPP.init = function () {
-            $('*').css('background','');
-        };
+            $('#eq2').click(function(event) {
+                $('div > ul > li:eq(2)').css('backgroundColor', 'gray');
+            });
 
-        $(document).ready( function(event) {
-            $('#selector').click(function(event){
-                MYAPP.init();
-                $('li > ul').css('background','red');
+            $('#first').click(function(event) {
+                $('li').first().css('backgroundColor', 'gray');
             });
-            $('#method'  ).click(function(event){
-                MYAPP.init();
-                $('li').children('ul').css('background','pink');
+
+            $('#last').click(function(event) {
+                $('li').last().css('backgroundColor', 'gray');
             });
-            $('#eq2'     ).click(function(event){
-                MYAPP.init(); // 초기화
-                $('div > ul > li:eq(2)').text('eq text').css('background', '#AAA');
+
+            $('#method').click(function(event) {
+                $('li').find('ul').css('backgroundColor', 'pink');
             });
-            $('#eq2method'     ).click(function(event){
-                MYAPP.init(); // 초기화
-                $('div > ul').children('li').eq(2).text('eq text').css('background', '#AAA');
+
+            $('#eq2method').click(function(event) {
+                $('ul').children().eq(2).css('backgroundColor', 'gray');
             });
-            $('#first'   ).click(function(event){
-                MYAPP.init(); // 초기화
-                $('div > ul > li:first').text('first text').css('background', '#AAA');
+
+            $('#firstmethod').click(function(event) {
+                $('ul').children().first().css('backgroundColor', 'gray');
             });
-            $('#firstmethod'   ).click(function(event){
-                MYAPP.init(); // 초기화
-                $('div > ul').children('li').first().text('first text').css('background', '#AAA');
+
+            $('#lastmethod').click(function(event) {
+                $('div > ul').children().last().css('backgroundColor', 'gray');
             });
-            $('#last'    ).click(function(event){
-                MYAPP.init(); // 초기화
-                $('div > ul > li:last').text('last text').css('background', '#AAA');
-            });
-            $('#lastmethod'    ).click(function(event){
-                MYAPP.init(); // 초기화
-                $('div > ul').children('li').last().text('last text').css('background', '#AAA');
-            });
+
+
         });
     </script>
 </head>
