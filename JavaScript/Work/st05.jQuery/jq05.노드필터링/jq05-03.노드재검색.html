@@ -5,28 +5,19 @@
     <style>
         div { background : #FFF; padding:10px; margin:10px; }
     </style>
-    <script src='../jquery-3.1.1.js'></script>
+    <script src='../jquery-3.2.1.js'></script>
     <script>
-        MYAPP = {};
-
-        // 초기화 함수
-        MYAPP.init = function () {
-            $('*').css('border','');
-        };
-
-        $(document).ready( function(e){
-
-            $('#filter'  ).click( function(e){
-                MYAPP.init();
-                $('div > ul > li').filter(':gt(1)').css('border', '1px dotted red');
+        $(document).ready(function() {
+            $('#filter').click(function(event) {
+                $('div > ul > li').filter(':gt(1)').css('background', 'red');
             });
-            $('#children').click( function(e){
-                MYAPP.init();
-                $('div > ul').children('li').css('border', '1px dotted blue');
+
+            $('#children').click(function(event) {
+                $('div > ul').children('li').css('border', '1px red solid');
             });
-            $('#find'    ).click( function(e){
-                MYAPP.init();
-                $('div > ul').find('li').css('border', '1px dotted gray');
+
+            $('#find').click(function(event) {
+                $('div > ul').find('li').css('border', '1px blue solid')
             });
         });
 
