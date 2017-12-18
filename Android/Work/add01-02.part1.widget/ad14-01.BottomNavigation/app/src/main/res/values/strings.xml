@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BottomNavigation</string>
+    <string name="title_dog">강아지</string>
+    <string name="title_cat">고양이</string>
+    <string name="title_horse">말</string>
+    <string name="title_rabbit">토끼</string>
+</resources>

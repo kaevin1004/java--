@@ -2,36 +2,28 @@
 <html lang="ko">
 <head>
     <title>Infinity Scroll</title>
-	<script src='../jquery-3.1.1.js'></script>
+	  <script src='../jquery-3.2.1.js'></script>
     <script>
-        var MYAPP = { count : 0 };
-        MYAPP.appendText = function(){
-
-            for( var i=0; i<20;i=i+1) {
-                $('body').append('<h1>infinity scroll ' + (MYAPP.count++) + '</h1>');
-            }
-        };
-
-        $(document).ready(function (e) {
-
-            MYAPP.appendText();
-
-            $(window).scroll( function (e) {
-
-                var scrollHeight = $(window).scrollTop() + $(window).height();
-
-                var docoumentHeight = $(document).height();
-
-
-                if( Math.abs(scrollHeight - docoumentHeight) <= 10 ) {
-
-                    MYAPP.appendText();
+        $(document).ready(function(e) {
+            /*$('button').click(function(event) {
+                for(i=1; i<=20; i=i+1){
+                    $('body').append('<h1>infinity scroll </h1>');
                 }
             });
+             //append로 설정하여 자식 추가하기. */
+
+             $(window).scroll(function(event) {
+                if ($(document).height()===$(window).scrollTop()+$(window).height()) {
+                    for(i=1; i<=20; i=i+1){
+                    $('body').append('<h1>infinity scroll </h1>');
+                }
+                }
+             });
         });
     </script>
 
 </head>
+<button>클릭하면 &lt;h1&gt;infinity scroll&lt;h1; 를 20개 추가하시오</button>
 <body>
     <h1>infinity scroll </h1>
     <h1>infinity scroll </h1>
@@ -49,5 +41,6 @@
     <h1>infinity scroll </h1>
     <h1>infinity scroll </h1>
     <h1>infinity scroll </h1>
+
 </body>
 </html>
