@@ -1,4 +1,4 @@
-package com.example.administrator.webview;
+package com.example.menuwidget;
 
 import org.junit.Test;
 
