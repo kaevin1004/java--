@@ -49,7 +49,7 @@
                 $(this).attr('src', 'images/img_swap_off.png');
             });
 
-            // span 엘리먼트에 mouseover, mouseout, mousedown, mouseup 효과 넣기
+
             $('span').mouseover( function(e){
                 $(this).css('background-color', 'yellow');
             }).mouseout( function(e){
@@ -60,19 +60,20 @@
                 $(this).css('background-color', 'pink');
             });
 
-            // id="sel" 엘리먼트에 change 효과 넣기
+
             $('#sel').change( function (e) {
                 var val = $(this).val();
                 $('#img').attr('src', val);
             });
 
-            // id="ID" 엘리먼트에 focus, blur 효과 넣기
-            $('#ID').focus( function (event) {
-                //$(this) === $('#ID')
-                $(this).css('border', '3px dashed #aa00aa');
-            }).blur( function (event) {
-                //$(this) === $('#ID')
-                $(this).css('border', '');
+
+            $('#ID').on({
+                'focus' : function(e){
+                    $(this).css('outline', '2px dotted red');
+                }
+                ,'blur' : function(e){
+                    $(this).css('outline', '');
+                }
             });
 
         });

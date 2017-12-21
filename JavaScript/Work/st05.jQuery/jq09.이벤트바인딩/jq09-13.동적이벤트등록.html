@@ -9,11 +9,10 @@
 	        display:block; margin-top:10px;}
 	    div { border: 1px dashed red; }
 	</style>
-	<script src='../jquery-3.1.1.js'></script>
+	<script src='../jquery-3.2.1.js'></script>
 	<script>
 	    $(document).ready( function(){
-	        // p click 이벤트 달기.
-	        // p를 클릭 했을 동생으로 추가 : <p class='b'>p paragraph!</p>
+
 	        $('p').click( function (e) {
 	            $('#p').append( '<p class="b">p paragraph!</p>');
 	            $('ul.menu').html('<p>append p.b paragraph!</p>');
@@ -23,14 +22,12 @@
 	        } );
 
 
-	        // span click 이벤트 달기.
-	        // span를 클릭 했을 때 추가 : <span class='b'>span paragraph!</span>
+
 	        $('span').click( function (e) {
 	            $append = $('#span').append( '<span class="b">span paragraph!</span>')
 	            $('ul.menu').html('<span>append span.p paragraph!</span>');
 
-	            // 클래식 방식으로 동적으로 추가시 중첩 이벤트 발생.
-	            // 동적 이벤트 추가 on 방식을 사용.
+
 	            $append.click( function (event) {
 	                $('ul.menu').html('<span>span.b paragraph! clicked</span>');
 	            });
