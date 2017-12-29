@@ -206,8 +206,8 @@ public class DaoBoard implements IBoard {
         
         Map<String, Object> map = new HashMap<>();
         
-        map.put("updateValue", updateValue);
-        map.put("searchValue", searchValue);
+        //map.put("updateValue", updateValue);
+        //map.put("searchValue", searchValue);
         
         rs = session.update("mapper.mapperBoard.updateArticle", map);
         

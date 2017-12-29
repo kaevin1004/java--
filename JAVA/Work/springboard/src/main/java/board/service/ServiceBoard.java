@@ -10,6 +10,184 @@ import board.model.ModelComments;
 
 public class ServiceBoard implements IServiceBoard{
 
+    @Override
+    public String getBoardName(String boardcd) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ModelBoard getBoardOne(String boardcd) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<ModelBoard> getBoardList(String searchWord) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int insertBoard(ModelBoard board) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int updateBoard(ModelBoard setValue, ModelBoard whereValue)
+            throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int deleteBoard(ModelBoard board) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public List<ModelBoard> getBoardSearch(ModelBoard board) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int getBoardTotalRecord(String boardcd, String searchWord)
+            throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public List<ModelBoard> getBoardPaging(String boardcd, String searchWord,
+            int start, int end) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int insertBoardList(List<ModelBoard> list) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int getArticleTotalRecord(String boardcd, String searchWord)
+            throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public List<ModelArticle> getArticleList(String boardcd, String searchWord,
+            int start, int end) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ModelArticle getArticle(int articleno) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int insertArticle(ModelArticle article) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int updateArticle(ModelArticle setValue, ModelArticle whereValue)
+            throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int deleteArticle(ModelArticle article) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int increaseHit(int articleno) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public ModelArticle getNextArticle(int articleno, String boardcd,
+            String searchWord) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ModelArticle getPrevArticle(int articleno, String boardcd,
+            String searchWord) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ModelAttachFile getAttachFile(int attachFileNo) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<ModelAttachFile> getAttachFileList(int articleno)
+            throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int insertAttachFile(ModelAttachFile attachFile) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int deleteAttachFile(ModelAttachFile attachFile) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public ModelComments getComment(int commentNo) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<ModelComments> getCommentList(int articleno) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int insertComment(ModelComments comment) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int updateComment(ModelComments setValue, ModelComments whereValue)
+            throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int deleteComment(ModelComments comment) throws Exception {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
     
     
 }
