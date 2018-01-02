@@ -2,21 +2,14 @@ package com.example.customlistview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -38,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_all_del;
     private Button btn_init;
     private ListView list_view;
-    ArrayAdapter<String> adapter;
-    private List<String> data;
+    AdapterStudent adapter;
+    private List<ModelStudent> data;
 
 
     @Override
@@ -63,50 +56,23 @@ public class MainActivity extends AppCompatActivity {
         btn_init = findViewById(R.id.btn_init);
         list_view = findViewById(R.id.list_view);
 
-        Handler handler = new Handler();
+        ButtonHanlder buttonHanlder = new ButtonHanlder();
 
-        btn_add.setOnClickListener(handler);
+        btn_add.setOnClickListener(buttonHanlder);
+        btn_search.setOnClickListener(buttonHanlder);
+        btn_sort.setOnClickListener(buttonHanlder);
+        btn_del.setOnClickListener(buttonHanlder);]
+        btn_all_del.setOnClickListener(buttonHanlder);
+        btn_init.setOnClickListener(buttonHanlder);
 
+        List<ModelStudent> data = new ArrayList<>();
+        for (int i = 0; i < 5; i=i+1){
+            ModelStudent student = new ModelStudent();
+            student.setName("aaa"+i);
+            student.setNumber("bbb"+i);
+            student.setDepartment(i+""+i+""+"-"+i+""+i);
 
-        list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
-
-        list_view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                return false;
-            }
-        });
-
-        String[] items = getResources().getStringArray(R.array.items);
-
-        data = new ArrayList<String>(Arrays.asList(items));
-
-        adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, data);
-
-    }
-
-    public class Handler implements View.OnClickListener{
-        @Override
-        public void onClick(View view) {
-
-            String a = edit_name.getText().toString();
-            String c = edit_number.getText().toString();
-            String b = edit_department.getText().toString();
-
-
-            switch (view.getId()){
-
-                case R.id.btn_add:
-                    if (!TextUtils.isEmpty(a)){
-
-                        adapter.btn_add(a);
-                    }
-            }
         }
+
     }
 }
