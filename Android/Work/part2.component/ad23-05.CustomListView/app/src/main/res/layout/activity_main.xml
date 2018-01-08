@@ -71,6 +71,7 @@
             android:text="정렬"/>
     
         <RadioGroup
+            android:id="@+id/rgpAscDesc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

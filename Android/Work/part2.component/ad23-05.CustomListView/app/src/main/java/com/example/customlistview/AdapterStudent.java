@@ -1,6 +1,7 @@
 package com.example.customlistview;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,47 +12,51 @@ import android.widget.TextView;
 
 import java.util.List;
 
+
 /**
  * Created by Administrator on 2018-01-02.
  */
 
 public class AdapterStudent extends ArrayAdapter<ModelStudent> {
 
+
+    private Context context;
+
     public AdapterStudent(@NonNull Context context, int resource, @NonNull List<ModelStudent> objects) {
 
         super(context, resource, objects);
+        this.context = context;
     }
 
     class ViewHolder {
 
-        TextView mNameTv;
-        TextView mNumberTv;
-        TextView mDepartmentTv;
+        TextView name;
+        TextView number;
+        TextView department;
     }
 
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        View itemLayout = super.getView(position, convertView, parent);
+        View itemLayout = LayoutInflater.from(context).inflate(R.layout.view_student, parent, false);
 
         ViewHolder viewHolder = (ViewHolder) itemLayout.getTag();
 
         if (viewHolder == null) {
             viewHolder = new ViewHolder();
-            viewHolder.mNameTv = (TextView) itemLayout.findViewById(R.id.text_name);
-            viewHolder.mNumberTv = (TextView) itemLayout.findViewById(R.id.text_number);
-            viewHolder.mDepartmentTv = (TextView)
-                    itemLayout.findViewById(R.id.text_department);
+            viewHolder.name = itemLayout.findViewById(R.id.text_name);
+            viewHolder.number = itemLayout.findViewById(R.id.text_number);
+            viewHolder.department = itemLayout.findViewById(R.id.text_department);
             itemLayout.setTag(viewHolder);
 
 
         }
 
-        viewHolder.mNameTv.setText(getItem(position).getName());
-        viewHolder.mNumberTv.setText(getItem(position).getNumber());
-        viewHolder.mDepartmentTv.setText(getItem(position).getDepartment());
+        viewHolder.name.setText(getItem(position).getName());
+        viewHolder.number.setText(getItem(position).getNumber());
+        viewHolder.department.setText(getItem(position).getDepartment());
 
         return itemLayout;
 

@@ -2,7 +2,8 @@
 <resources>
     <string-array name="items">
         
-        <item>list data 0</item>
-        <item>list data 1</item>
+        <item>이름</item>
+        <item>학번</item>]
+        <item>학과</item>
      </string-array>
 </resources>

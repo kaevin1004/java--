@@ -3,8 +3,11 @@ package com.example.customlistview;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.apache.commons.collections.Predicate;
+
 import java.text.Collator;
 import java.util.Comparator;
+
 
 /**
  * Created by Administrator on 2018-01-02.
@@ -49,12 +52,15 @@ public class ModelStudent implements Parcelable{
                 '}';
     }
 
-    public ModelStudent() {
+    public ModelStudent(Parcel in) {
 
         name = in.readString();
         number = in.readString();
         department = in.readString();
 
+    }
+
+    public ModelStudent() {
     }
 
     public ModelStudent(String name, String number, String department) {
@@ -97,6 +103,94 @@ public class ModelStudent implements Parcelable{
             return new ModelStudent[size];
         }
     };
+
+    public static class NameCompare implements Comparator<ModelStudent>{
+
+        private int mode = 1;
+
+        public NameCompare(Boolean desc){
+            if (desc){
+                mode = -1;
+            }
+        }
+
+
+        @Override
+        public int compare(ModelStudent modelStudent, ModelStudent t1) {
+            return modelStudent.getName().compareTo(t1.getName()) * mode;
+        }
+
+    }
+
+    public static class NumberCompare implements Comparator<ModelStudent>{
+
+        private int mode = 1;
+
+        public NumberCompare(Boolean desc){
+            if (desc){
+                mode = -1;
+            }
+        }
+
+        @Override
+        public int compare(ModelStudent modelStudent, ModelStudent t1) {
+            return modelStudent.getNumber().compareTo(t1.getNumber()) * mode;
+        }
+    }
+
+    public static class DeptCompare implements Comparator<ModelStudent>{
+
+        private int mode = 1;
+
+        public DeptCompare(Boolean desc){
+            if (desc){
+                mode = -1;
+            }
+        }
+
+        @Override
+        public int compare(ModelStudent modelStudent, ModelStudent t1) {
+            return modelStudent.getDepartment().compareTo(t1.getDepartment()) * mode;
+        }
+    }
+
+
+
+
+        public static class MyPredicate implements Predicate {
+
+        private String fieldName;
+        private Object value;
+
+        public MyPredicate(String fieldName, Object value) {
+            this.fieldName = fieldName;
+            this.value = value;
+        }
+
+        @Override
+        public boolean evaluate(Object object) {
+
+            if (fieldName.equals("name")) {
+                return ((ModelStudent)object).getName().contains(value.toString());
+
+
+            } else if (fieldName.equals("number")) {
+
+                return ((ModelStudent)object).getNumber().contains(value.toString());
+
+            } else if (fieldName.equals("deparment")) {
+
+                return ((ModelStudent)object).getDepartment().contains(value.toString());
+
+            } else {
+
+                return false;
+
+            }
+
+        }
+
+    }
 
 }
 
