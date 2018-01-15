@@ -5,7 +5,7 @@
 <mapper namespace="mapper.mysql.mapperPhone">
     
         
-    <select id="getPhoneOne" parameterType="string" resultType="ModelBoard">
+    <select id="getPhoneOne" parameterType="string" resultType="ModelPhone">
         SELECT *
           FROM TB_Phone
          WHERE name = #{name}
@@ -24,7 +24,7 @@
     </insert>
     
     <insert id="insertPhoneList" parameterType="java.util.List">
-        INSERT INTO TB_Bbs_Board( name , manufacturer , price  )
+        INSERT INTO TB_Phone( name , manufacturer , price  )
         VALUES
             <foreach collection="list" item="item" index="index" open="(" separator="),(" close=")">
                 #{item.name} , #{item.manufacturer} , #{item.price}

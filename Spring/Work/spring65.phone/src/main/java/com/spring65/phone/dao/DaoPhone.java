@@ -6,10 +6,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.spring65.phone.inf.IDaoPhone;
 import com.spring65.phone.model.ModelPhone;
 
+@Repository("daophone")
 public class DaoPhone implements IDaoPhone{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -18,24 +20,24 @@ public class DaoPhone implements IDaoPhone{
     @Override
     public ModelPhone getPhoneOne(String name) {
         
-        return session.selectOne("", name);
+        return session.selectOne("mapper.mysql.mapperPhone.getPhoneOne", name);
     }
 
     @Override
     public List<ModelPhone> getPhoneList() {
         
-        return null;
+        return session.selectList("mapper.mysql.mapperPhone.getPhoneList");
     }
 
     @Override
     public int insertPhone(ModelPhone phone) {
         
-        return 0;
+        return session.insert("mapper.mysql.mapperPhone.insertPhone", phone);
     }
 
     @Override
-    public int insertPhone(List<ModelPhone> phones) {
+    public int insertPhoneList(List<ModelPhone> phones) {
         
-        return 0;
+        return session.insert("mapper.mysql.mapperPhone.insertPhoneList", phones);
     }
 }
