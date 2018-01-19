@@ -8,6 +8,21 @@
     <meta name="Description" content="비빌번호 변경" />
     <title>비밀번호 변경</title>
     <link rel="stylesheet" href="/resources/css/screen.css" type="text/css"  />
+    <script scr="resources/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript">
+         $(document).ready(function(e){
+        	 $('#changePasswordForm input[type="button"]').chick(function(e){
+        		 var newpw = $('input[name="newPasswd"]').val();
+        		 var confirm = $('input[name="confirm"]').val();
+        		 if(newpw == confirm){
+        			 $('#changPasswordForm').aubmit();
+        		 }
+        		 else{
+        			 $('#error_message').text('비밀번호가 일치하지 않습니다.').show().delay('8000').hide();
+        		 }
+        	 });
+         });
+    </script>
  
 </head>
 <body>
@@ -22,6 +37,10 @@
             <h1>비밀번호 변경</h1>
                 ${user.name }<br />
                 ${user.mobile }<br />
+                
+            <c:if test="${not empty msg }">
+            <p style="color: red;">정보수정에 실패했습니다.</p>
+            </c:if> 
                 
             <div id="error_message">
             </div>

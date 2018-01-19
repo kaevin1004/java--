@@ -23,4 +23,8 @@ public interface IUser {
    List<ModelUser> selectUserList(ModelUser user);
    
    int checkuserid(String userid); // id 중복확인
+   
+   //password 확인, 이유는 pw는 암호화 되기 때문.
+   int checkpassword(String id, String curpw);
+   
 }
