@@ -61,7 +61,11 @@ public class UserController {
     }
     
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
-       public String login(Model model, @RequestParam String url, @RequestParam String userid, @RequestParam String passwd, HttpSession session, RedirectAttributes rttr) {
+       public String login(Model model, @RequestParam String url
+                                      , @RequestParam String userid
+                                      , @RequestParam String passwd
+                                      , HttpSession session
+                                      , RedirectAttributes rttr) {
            
            logger.info("user/login : post");
            
@@ -194,7 +198,10 @@ public class UserController {
     }
     
     @RequestMapping(value = "/user/changepassword", method = RequestMethod.POST)
-    public String changepassword(Model model, HttpSession session, @RequestParam String currentPasswd, @RequestParam String newPasswd, RedirectAttributes rttr) {
+    public String changepassword(Model model, HttpSession session
+                                            , @RequestParam String currentPasswd
+                                            , @RequestParam String newPasswd
+                                            , RedirectAttributes rttr) {
         
         logger.info("/user/changepassword : post");
         

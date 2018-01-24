@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ad23-05.CustomListView.iml" filepath="$PROJECT_DIR$/ad23-05.CustomListView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/st3checkablecustomlistview/checkablecustomlistview.iml" filepath="$PROJECT_DIR$/st3checkablecustomlistview/checkablecustomlistview.iml" />
+      <module fileurl="file://D:\workspace2\Android\Work\part2.component\ad23-05.CustomListView\st3checkablecustomlistview\checkablecustomlistview.iml" filepath="D:\workspace2\Android\Work\part2.component\ad23-05.CustomListView\st3checkablecustomlistview\checkablecustomlistview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/st3/st3.iml" filepath="$PROJECT_DIR$/st3/st3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/st3checkablecustomlistview/st3checkablecustomlistview.iml" filepath="$PROJECT_DIR$/st3checkablecustomlistview/st3checkablecustomlistview.iml" />
     </modules>
   </component>
 </project>

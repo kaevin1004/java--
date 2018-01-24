@@ -13,7 +13,47 @@
     <title>${boardNm }</title>
     
     <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/resources/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(e) {
+    	$('tr[articleno]').click(function(e){
+    		  var articleno = $(this).attr('articleno')	;
+    		  window.location.href = '/board/articleview/${boardcd}/' + articleno + window.location.search;
+    	});
+    });
+    </script>
+    <script type="text/javascript">
+    var goView = function(articleno){
+    	window.location.href = '/board/articleview/${boardcd}/' + articleno + window.location.search;
+    };
     
+    var goModify = function(){
+    	window.location.href = '/board/articleview/${boardcd}/${articleno}';
+    };
+    
+    var goDelete = function(){ //post 방식으로 처리(ajax, form)
+    	var f = document.createElement('form');
+        f.setAttribute('method', 'post');
+        f.setAttribute('action', '/board/articledelete/${boardcd}/${articleno}');
+        //f.setAttribute('enctype', 'application/x-www-form-urlencoded');
+        document.body.appendChild(f);
+        
+        f.submit();
+    };
+    
+    var goList = function(curPage, redirect}){
+    	if(redirect == false){
+    		location.href = '/board/articledelete/${boardcd}/${articleno}?curPage' + curPage;
+        }
+    	else{
+    		location.href = '/board/articlelist/${boardcd}?curPage=' + curPage;
+    	}
+    };
+    var goWrite = function(){
+    	location.href = '/board/articlelist/${boardcd}';
+    };
+    
+    </script>
 </head>
 <body>
 
@@ -49,7 +89,7 @@
             		<p>${thisArticle.content }</p>
             		<p id="file-list" style="text-align: right;">
             			<c:forEach var="file" items="${attachFileList }" varStatus="status">
-            			<a href="javascript:download('${file.filename }')">${file.filename }</a>
+            			<a href="javascript:download('${file.filenametemp }')">${file.filenameorig }</a>
             			<a href="javascript:deleteAttachFile('${file.attachfileno }')">x</a>
             			<br />
             			</c:forEach>	
@@ -100,7 +140,7 @@
             		</div>
             	</div>
             
-            	<table style="clear: both;">
+            	<table id="bbs" style="clear: both;">
                 	<tr>
                 		<th style="width: 60px">NO</th>
                 		<th>TITLE</th>
@@ -110,7 +150,7 @@
                 	
                 	<!--  반복 구간 시작 -->
                 	<c:forEach var="article" items="${articleList }" varStatus="status">
-                	<tr>
+                	<tr articleno="${article.articleno}">
                 		<td style="text-align: center;">
                 			<c:choose>
                 				<c:when test="${articleno == article.articleno }">
@@ -138,8 +178,8 @@
             	</table>
             		
             	<div id="paging" style="text-align: center;">            		
-            		<c:if test="${prevPage > 0 }">
-            			<a href="javascript:goList(${prevPage })">[이전]</a>
+            		<c:if test="${prevLink > 0 }">
+            			<a href="javascript:goList(${prevLink })">[이전]</a>
             		</c:if>
             		
             		<c:forEach var="i" items="${pageLinks }" varStatus="stat">
