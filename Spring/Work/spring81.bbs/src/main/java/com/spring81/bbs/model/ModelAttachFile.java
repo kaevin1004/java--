@@ -104,6 +104,10 @@ public class ModelAttachFile {
         this.articleno = articleno;
         
     }
+    public ModelAttachFile(Integer attachfileno){
+        super();
+        this.attachfileno = attachfileno;
+    }
     
     
 }

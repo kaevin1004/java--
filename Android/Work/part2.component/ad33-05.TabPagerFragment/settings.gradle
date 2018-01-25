@@ -1,1 +1,1 @@
-include ':app', ':st3'
+include ':app', ':st3', ':st7slide'

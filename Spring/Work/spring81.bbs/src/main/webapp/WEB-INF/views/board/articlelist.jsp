@@ -18,8 +18,17 @@
     var goList = function(page){
     	window.location.href = "/board/articlelist/${boardcd}?searchWord=${searchWord}&curPage=" + page;
     };
+    
+    
     </script>
-             
+    <script type="text/javascript">
+    $(document).ready(function(e){
+    	$('#bbs tr[articleno]').click(function(e){
+    		var articleno = $(this).attr('articleno');
+    		window.location.href = '/board/articleview/${boardcd}/' + articleno;
+    	});
+    });
+    </script>   
 </head>
 <body>
 
@@ -50,7 +59,7 @@
                 	</tr>
                 	<!--  반복 구간 시작 -->
                 	<c:forEach var="article" items="${articleList }" varStatus="status">	
-                	<tr>
+                	<tr articleno="${article.articleno}">
                 		<td style="text-align: center;">${no - status.index}</td>
                 		<td>
                 			<a href="javascript:goView('${article.articleno }')">${article.title }</a>

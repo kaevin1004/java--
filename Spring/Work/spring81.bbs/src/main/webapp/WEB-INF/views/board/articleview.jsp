@@ -21,6 +21,36 @@
     		  window.location.href = '/board/articleview/${boardcd}/' + articleno + window.location.search;
     	});
     });
+    
+    var download = function(filetemp, fileorig){
+    	// post 로 요청. ajax, form
+    	var f = document.createElement('form');
+    	
+    	f.setAttribute('method', 'post');
+    	f.setAttribute('action', '/download');
+    	f.setAttribute('enctype', 'application/x-www-form-urlencoded');
+    	
+    	var i = document.createElement('input');
+    	
+    	i.setAttribute('type', 'hidden');
+    	i.setAttribute('name', 'filetemp');
+    	i.setAttribute('value', filetemp);
+    	
+    	f.appendChild(i);
+    	
+       var i = document.createElement('input');
+        
+        i.setAttribute('type', 'hidden');
+        i.setAttribute('name', 'fileorig');
+        i.setAttribute('value', fileorig);
+        
+        f.appendChild(i);
+    	
+    	document.body.appendChild(f);
+    	
+    	f.submit();
+    	
+    };
     </script>
     <script type="text/javascript">
     var goView = function(articleno){
@@ -41,8 +71,8 @@
         f.submit();
     };
     
-    var goList = function(curPage, redirect}){
-    	if(redirect == false){
+    var goList = function(curPage, redirect){
+    	if(redirect === false){
     		location.href = '/board/articledelete/${boardcd}/${articleno}?curPage' + curPage;
         }
     	else{
@@ -89,7 +119,7 @@
             		<p>${thisArticle.content }</p>
             		<p id="file-list" style="text-align: right;">
             			<c:forEach var="file" items="${attachFileList }" varStatus="status">
-            			<a href="javascript:download('${file.filenametemp }')">${file.filenameorig }</a>
+            			<a href="javascript:download('${file.filenametemp }', '${file.filenameorig }')">${file.filenameorig }</a>
             			<a href="javascript:deleteAttachFile('${file.attachfileno }')">x</a>
             			<br />
             			</c:forEach>	
@@ -179,7 +209,7 @@
             		
             	<div id="paging" style="text-align: center;">            		
             		<c:if test="${prevLink > 0 }">
-            			<a href="javascript:goList(${prevLink })">[이전]</a>
+            			<a href="javascript:goList(${prevLink }, false)">[이전]</a>
             		</c:if>
             		
             		<c:forEach var="i" items="${pageLinks }" varStatus="stat">
@@ -188,13 +218,13 @@
             				<span class="bbs-strong">${i }</span>
             			</c:when>
             			<c:otherwise>
-            				<a href="javascript:goList(${i })">${i }</a>
+            				<a href="javascript:goList(${i }, false)">${i }</a>
             			</c:otherwise>
             			</c:choose>
             		</c:forEach>
             		
             		<c:if test="${nextLink > 0 }">
-            			<a href="javascript:goList(${nextLink })">[다음]</a>
+            			<a href="javascript:goList(${nextLink }, false)">[다음]</a>
             		</c:if>            		
             	</div>
    

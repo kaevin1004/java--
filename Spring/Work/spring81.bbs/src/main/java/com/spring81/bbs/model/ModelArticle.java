@@ -114,6 +114,9 @@ public class ModelArticle {
     }
     
     
+    public ModelArticle(Integer articleno) {
+        this.articleno = articleno;
+    }
     @Override
     public String toString() {
         return "ModelArticle [articleno=" + articleno + ", boardcd=" + boardcd

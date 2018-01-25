@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -370,7 +371,7 @@ public class BoardController {
                 ModelAttachFile attachFile = new ModelAttachFile();
                 attachFile.setArticleno(insertedpk);
                 attachFile.setFilenameorig(fileName);
-                attachFile.setFilenametemp(newFile);
+                attachFile.setFilenametemp(tempName);
                 attachFile.setFilesize(serverfile.length());
                 attachFile.setFiletype(upload.getContentType());
                 
@@ -382,5 +383,128 @@ public class BoardController {
         String url = String.format("redirect:/board/articleview/%s/%d", article.getBoardcd(), insertedpk);
         return url;
     }
-	
+    
+    @RequestMapping(value = "/board/articlemodify/{boardcd}/{articleno}", method = RequestMethod.GET)
+    public String articlemodify(Model model, @PathVariable String boardcd
+                                           , @PathVariable Integer articleno
+                                           , @RequestParam(defaultValue="1") Integer curPage
+                                           , @RequestParam(defaultValue="") String searchWord
+                                           , HttpServletRequest request) {
+        logger.info("/board/articlemodify :: get");
+        
+        
+        
+        
+        
+        model.addAttribute("actionurl", request.getRequestURL().toString());
+        
+        model.addAttribute("boardnm", srvboard.getBoardName(boardcd));
+        model.addAttribute("boardcd", boardcd);
+        model.addAttribute("articleno",articleno);
+        model.addAttribute("curPage", curPage);
+        model.addAttribute("searchWord", searchWord);
+        
+        model.addAttribute("thisArticle", srvboard.getArticle(articleno));
+        model.addAttribute("attachFileList", srvboard.getAttachFileList(articleno));
+        
+        
+        
+        return "redirect:/board/articlelist/" + boardcd;
+    }
+    
+    @RequestMapping(value = "/board/deleteattachfile", method = RequestMethod.POST)
+    @ResponseBody
+    public int deleteattachfile(Model model
+                                   , @RequestParam Integer attachfileno) {
+        logger.info("/board/deleteattachfile :: post");
+        
+        ModelAttachFile attachFile = new ModelAttachFile();
+        
+        attachFile.setAttachfileno(attachfileno);
+        
+        int rs = srvboard.deleteAttachFile(attachFile);
+        
+            return rs;
+        }
+    
+    @RequestMapping(value = "/board/articlemodify/{boardcd}/{articleno}", method = RequestMethod.POST)
+    public String articlemodify(Model model
+            , @ModelAttribute ModelArticle setValue
+            , @RequestParam(defaultValue="upload") MultipartFile upload
+            , @RequestParam(defaultValue="1") Integer curPage
+            , @RequestParam(defaultValue="") String searchWord) {
+        logger.info("/board/articlemodify :: post");
+        
+        //1. tb_bbs_article table Insert.class inserted pk 값을 반환 받는다.
+        //2. client의 파일을 server로 upload
+        //3. tb_bbs_attachfile 테이블에 insert.
+        
+        
+        if(!upload.getOriginalFilename().isEmpty()){
+            
+            java.io.File uploadDir = new java.io.File(WebConstants.UPLOAD_PATH);
+            if(!uploadDir.exists()){ 
+                uploadDir.mkdir();
+            }
+            
+            String fileName = upload.getOriginalFilename();
+            String tempName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+            String newFile = WebConstants.UPLOAD_PATH + tempName;
+            java.io.File serverfile = new java.io.File(newFile);
+            
+            try {
+                upload.transferTo(serverfile);
+            } catch (IllegalStateException e) {
+                logger.error("articlewrite" + e.getMessage());
+                e.printStackTrace();
+                
+            } catch (IOException e) {
+                logger.error("articlewrite" + e.getMessage());
+                e.printStackTrace();
+                
+            }
+            // 파일을 서버로 복사 성공 여부체크.
+            // 성공한 경우면 tb_bba_attachfile 테이블에 insert
+            if(serverfile.exists()){
+                
+                ModelAttachFile attachFile = new ModelAttachFile();
+                attachFile.setArticleno(setValue.getArticleno());
+                attachFile.setFilenameorig(fileName);
+                attachFile.setFilenametemp(tempName);
+                attachFile.setFilesize(serverfile.length());
+                attachFile.setFiletype(upload.getContentType());
+                
+                int rs = srvboard.insertAttachFile(attachFile);
+                
+            }
+            
+        }
+        
+        ModelArticle whereValue = new ModelArticle(setValue.getArticleno());
+        int rs = srvboard.updateArticle(setValue, whereValue);
+        
+        String url = String.format("redirect:/board/articlemodify/%s/%d", setValue.getBoardcd(), setValue.getArticleno());
+        return url;
+    }
+    
+    @RequestMapping(value = "/board/articledelete/{boardcd}/{articleno}", method = RequestMethod.POST)
+    public String articledelete(Model model
+            , @PathVariable String boardcd
+            , @PathVariable Integer articleno
+            , @RequestParam(defaultValue="1") Integer curPage
+            , @RequestParam(defaultValue="") String searchWord ) {
+        logger.info("/board/articledelete :: post");
+        
+        ModelAttachFile attachFile = new ModelAttachFile();
+        attachFile.setArticleno(articleno);
+        
+        srvboard.deleteAttachFile(attachFile);
+        srvboard.deleteComment(new ModelComments(articleno));
+        srvboard.deleteArticle(new ModelArticle(articleno));
+        
+        return "board/articlemodify";
+    }
+       
 }
+	
+
