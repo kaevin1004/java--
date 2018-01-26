@@ -492,17 +492,26 @@ public class BoardController {
             , @PathVariable String boardcd
             , @PathVariable Integer articleno
             , @RequestParam(defaultValue="1") Integer curPage
-            , @RequestParam(defaultValue="") String searchWord ) {
+            , @RequestParam(defaultValue="") String searchWord 
+            , RedirectAttributes rttr) {
         logger.info("/board/articledelete :: post");
         
-        ModelAttachFile attachFile = new ModelAttachFile();
-        attachFile.setArticleno(articleno);
+        int rs = srvboard.transDeleteArticle(articleno);
         
-        srvboard.deleteAttachFile(attachFile);
-        srvboard.deleteComment(new ModelComments(articleno));
-        srvboard.deleteArticle(new ModelArticle(articleno));
+        String url = "";
         
-        return "board/articlemodify";
+        if(rs == 1){
+            url = String.format("redirect:/board/articlelist/%s?curPage=%d&searchWord=%s", boardcd, curPage, searchWord);
+        }
+        else{
+            rttr.addFlashAttribute("msg", WebConstants.MSG_FAIL_DELETE_ARTICLE);
+            rttr.addAttribute("curPage", curPage);
+            rttr.addAttribute("searchWord", searchWord);
+            url = String.format("redirect:/board/articleview/%s/%d", boardcd, articleno);
+        }
+        
+        
+        return url;
     }
        
 }

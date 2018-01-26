@@ -203,9 +203,9 @@ public class RestController {
         </li>        
         <li>댓글용 rest 서비스 만들기
             <ol>
-                <li>./restservice/commentadd    만들기 </li>
-                <li>./restservice/commentedit   만들기 </li>
-                <li>./restservice/commentdelete 만들기 </li>
+                <li>./rest/commentadd    만들기 (post)</li>
+                <li>./rest/commentedit   만들기 (post)</li>
+                <li>./rest/commentdelete 만들기 (post)</li>
             </ol>
         </li>
     </ol>  

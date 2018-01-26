@@ -309,7 +309,7 @@ public class RestController {
         return boardservice.deleteAttachFile(attachFile);
     }
     
-    @RequestMapping(value= "/getcomment", method = RequestMethod.GET)
+    @RequestMapping(value= "/getcomment", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public ModelComments getcomment(@RequestParam(defaultValue="0")int commentNo) {
         logger.info("/rest/getcomment");
@@ -317,7 +317,7 @@ public class RestController {
         return boardservice.getComment(commentNo);
     }
     
-    @RequestMapping(value= "/getcommentlist", method = RequestMethod.GET)
+    @RequestMapping(value= "/getcommentlist", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public List<ModelComments> getcommentlist(@RequestParam(defaultValue="0") int articleno) {
         logger.info("/rest/getcommentlist");
@@ -325,23 +325,34 @@ public class RestController {
         return boardservice.getCommentList(articleno);
     }
     
-    @RequestMapping(value= "/insertcomment", method = RequestMethod.GET)
-    @ResponseBody
-    public int insertcomment(@ModelAttribute ModelComments comment) {
+    @RequestMapping(value= "/insertcomment", method = RequestMethod.POST)
+    //@ResponseBody
+    public String insertcomment(Model model, @RequestBody ModelComments comment) {
         logger.info("/rest/insertcomment");
         
-        return boardservice.insertComment(comment);
+        int commentno = boardservice.insertComment(comment);
+        
+        ModelComments rs = boardservice.getComment(commentno);
+        
+        model.addAttribute("comment", rs);
+        
+        return "board/articleview-commentlistbody";
     }
     
-    @RequestMapping(value= "/updatecomment", method = RequestMethod.GET)
+    @RequestMapping(value= "/updatecomment", method = RequestMethod.POST)
     @ResponseBody
-    public int updatecomment(@RequestBody ModelComments setValue, @RequestBody ModelComments whereValue) {
+    public int updatecomment(@RequestBody ModelComments comment) {
         logger.info("/rest/updatecomment");
         
+        ModelComments setValue = new ModelComments();
+        setValue.setMemo(comment.getMemo());
+        
+        ModelComments whereValue = new ModelComments();
+        whereValue.setCommentno(comment.getCommentno());
         return boardservice.updateComment(setValue, whereValue);
     }
     
-    @RequestMapping(value= "/deletecomment", method = RequestMethod.GET)
+    @RequestMapping(value= "/deletecomment", method = RequestMethod.POST)
     @ResponseBody
     public int deletecomment(@ModelAttribute ModelComments comment) {
         logger.info("/rest/deletecomment");

@@ -13,6 +13,19 @@
     <title>${boardNm }</title>
     
     <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/resources/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(e){
+    	
+    	$('#goList').click(function(){
+    		window.location.href = "/board/articlelist/${boardcd}?searchWord=${searchWord}&curPage=${curPage}";
+    	});
+    });
+    
+    
+    		
+    		
+    </script>
    
 </head>
 <body>
@@ -57,7 +70,7 @@
 						<div style="text-align: center; padding-bottom: 15px;">
 							<input type="submit" value="전송" />
 							
-							<input type="button" value="목록" onclick="goList()" />
+							<input type="button" value="목록" id="goList()" />
 						</div>
 					</form>
 				</div>

@@ -14,14 +14,39 @@
     
     <link rel="stylesheet" href="/resources/css/screen.css" type="text/css" media="screen" />
     <script type="text/javascript" src="/resources/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="/resources/js/ajaxsetup.js"></script>
     <script type="text/javascript">
     $(document).ready(function(e) {
     	$('tr[articleno]').click(function(e){
     		  var articleno = $(this).attr('articleno')	;
     		  window.location.href = '/board/articleview/${boardcd}/' + articleno + window.location.search;
     	});
+    	$('#addComment input[type="button"]').click(function(e){
+    		var memo = $('#addComment textarea[]').val();
+    		var articleno = ${articleno};
+    		
+    		$.ajax({
+    		    url : '/rest/insertcomment'
+    		    , data: JSON.stringify({'articleno':articleno, 'memo': memo}) // 사용하는 경우에는 { data1:'test1', data2:'test2' }
+    		    , type: 'post'       // get, post
+    		    , timeout: 30000    // 30초
+    		    , dataType: 'html'  // text, html, xml, json, jsonp, script
+    		    , headers: {  'Accept': 'application/json', 'Content-Type': 'application/json' }
+    		    
+    		}).done( function(data, textStatus, xhr ){
+    		    // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+    		    //alert(data);
+    		    
+    		    $('#commentlist').prepend(data);
+    		    
+    		}).fail( function(xhr, textStatus, error ) {
+    		    // 통신이 실패했을 때 이 함수를 타게 된다.
+    		    alert(error);
+    		});
+    		
+    	});
+
     });
-    
     var download = function(filetemp, fileorig){
     	// post 로 요청. ajax, form
     	var f = document.createElement('form');
@@ -51,6 +76,64 @@
     	f.submit();
     	
     };
+    
+    var commentdelete = function(commentno){
+    	
+    	if(confirm("정말로 삭제하시겠습니까?")){
+    		
+    		$.ajax({
+    		    url : '/rest/deletecomment'
+    		    , data: JSON.stringify( {'commentno' : commentno} )        // 사용하는 경우에는 JSON.stringify( { 'data1':'test1', 'data2':'test2' } )
+    		    , type: 'post'       // get, post
+    		    , timeout: 30000    // 30초
+    		    , dataType: 'json'  // text, html, xml, json, jsonp, script
+    		    , headers: {  'Accept': 'application/json', 'Content-Type': 'application/json' }
+    		    
+    		}).done( function(data, textStatus, xhr ){
+    		    // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+    		    
+    		    if(data == 1){
+    		    	$('div.comments[commentno="commentno"' + commentno + '"]').remove();
+    		    }
+    		    else{
+    		    	
+    		    }
+    		    
+    		});
+    		
+    	}
+    	
+    };
+    
+    var commentModifyShowHide = function(commentno){
+    	$('div[commentno="' + commentno + '"] div.modify-comment').toggle();
+    	
+    };
+    
+    var commentupdate = function(commentno){
+    	var memo = $('div[commentno="' + commentno + '"] .modify-comment-ta').val();
+   
+    	$.ajax({
+            url : '/rest/updatecomment'
+            , data: JSON.stringify( {'commentno' : commentno, 'memo' : memo} )        // 사용하는 경우에는 JSON.stringify( { 'data1':'test1', 'data2':'test2' } )
+            , type: 'post'       // get, post
+            , timeout: 30000    // 30초
+            , dataType: 'json'  // text, html, xml, json, jsonp, script
+            , headers: {  'Accept': 'application/json', 'Content-Type': 'application/json' }
+            
+        }).done( function(data, textStatus, xhr ){
+            // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+            
+            if(data == 1){
+            	$('#comment' + commentno).html(memo);
+            	commentModifyShowHide(commentno);
+            }
+            
+        })
+    
+    
+    };
+    
     </script>
     <script type="text/javascript">
     var goView = function(articleno){
@@ -99,11 +182,19 @@
 
 
 	<div id="container">
+       
 		<div id="content" style="min-height: 800px;">
 			<div id="url-navi">BBS</div>
             
             <!-- 본문 시작 -->
             <h1>${boardNm }</h1>
+            
+            <c:if test="${not empty msg }">
+                <div>
+                <p style="color: red;">${msg}</p>
+                </div>
+            </c:if>    
+             
             <div id="bbs">
             	<table>
             	<tr>
